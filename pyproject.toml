@@ -43,6 +43,7 @@ myst-parser = { version = "0.17.0", optional = false }
 sphinx = { version = "4.4.0", optional = false }
 furo = { version = "2022.09.29", optional = false }
 docutils = "0.16"
+sphinx-pyreverse = "^0.0.17"
 
 
 [tool.poetry.dev-dependencies]
