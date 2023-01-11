@@ -4,4 +4,4 @@ pydata-sphinx-theme
 sphinx-inline-tabs
 numpydoc==1.2.0
 myst_parser==0.17.0
-sphinx==4.4.0
+sphinx==6.1.3
