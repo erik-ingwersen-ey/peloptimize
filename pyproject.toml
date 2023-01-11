@@ -35,6 +35,13 @@ pyodbc = { version = "^4.0.35", optional = false }
 pyspark = { version = "^3.3.1", optional = false }
 python-dotenv = { version = "^0.19.2", optional = false }
 scikit-learn = { version = "^1.2.0", optional = false }
+sphinx-click = { version = "^4.4.0", optional = false }
+pydata-sphinx-theme = { version = "^0.12.0", optional = false }
+sphinx-inline-tabs = { version = "^2022.1.2b11", optional = false }
+numpydoc = { version = "^1.5.0", optional = false }
+myst-parser = { version = "0.17.0", optional = false }
+sphinx = { version = "4.4.0", optional = false }
+furo = { version = "2022.09.29", optional = false }
 
 
 [tool.poetry.dev-dependencies]
