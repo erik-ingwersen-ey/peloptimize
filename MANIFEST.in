@@ -1,0 +1,25 @@
+graft docs
+graft src
+graft ci
+graft tests
+include .flake8
+
+
+include .bumpversion.cfg
+include .coveragerc
+include .editorconfig
+include pyproject.toml
+include tox.ini
+
+include .github/workflows/github-actions.yml
+include .readthedocs.yml
+include .pre-commit-config.yaml
+
+include AUTHORS.md
+include HISTORY.md
+include CONTRIBUTING.md
+include README.md
+include LICENSE
+
+
+global-exclude *.py[cod] __pycache__/* *.so *.dylib
