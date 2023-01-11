@@ -24,16 +24,16 @@ else:
 
 setup(
     name='peloptimize',
-    { % - if cookiecutter.setup_py_uses_setuptools_scm == 'y' %}
-    use_scm_version = {
+    use_scm_version={
         'local_scheme': 'dirty-tag',
         'write_to': 'src/pelopt/_version.py',
         'fallback_version': '0.01',
     },
-    { % - else %}
-    version = '0.01',
-    { % - endif %}
-    description="Criação de modelos de Machine Learning para predição de custos relacionados ao processo de pelotização da Vale S/A e otimização de custos através da aplicação de um modelo de otimização baseado nos outputs dos algoritmos preditivos.",
+    version='0.01',
+    description="Criação de modelos de Machine Learning para predição de "
+                "custos relacionados ao processo de pelotização da Vale S/A e "
+                "otimização de custos através da aplicação de um modelo de "
+                "otimização baseado nos outputs dos algoritmos preditivos.",
     license="Proprietary",
     author="Erik Ingwersen",
     author_email='erik.ingwersen@br.ey.com',

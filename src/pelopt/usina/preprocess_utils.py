@@ -103,6 +103,20 @@ def fix_vacuum_pressure_columns(
     pandas_df: pd.DataFrame,
     plant_number: str,
 ) -> pd.DataFrame:
+    """Fix potential errors with the vacuum pressure sensor data.
+
+    Parameters
+    ----------
+    pandas_df : pd.DataFrame
+        DataFrame with the vacuum pressure sensor data.
+    plant_number : str
+        The number of the pelleting plant that the data belongs to.
+
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame without bad vacuum pressure sensor data for the specified
+    """
     vacuum_pressure_cols = [
         col
         for col in pandas_df.columns
@@ -118,6 +132,28 @@ def fix_vacuum_pressure_columns(
 def fix_disk_rotations(
     pandas_df: pd.DataFrame, plant_number: str
 ) -> pd.DataFrame:
+    """Fix potential errors with the disk rotations sensor data.
+
+    Disk rotation sensors use Tags that follow
+    the pattern: ``"ROTA1_I@<PLANT-NUMBER>FI-FL-827I-"``.
+
+    Parameters
+    ----------
+    pandas_df : pd.DataFrame
+        DataFrame with the disk rotations sensor data.
+    plant_number : str
+        The number of the pelleting plant that the data belongs to.
+        This identifier is used to identify the Tags related to the disk
+        rotations of the plant.
+
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame without bad disk rotations sensor data for the specified
+        plant.
+    """
+    plant_number = str(plant_number)
+    plant_number = f'0{plant_number}' if len(plant_number) == 1 else plant_number
     for t in pandas_df.loc[
         :,
         [

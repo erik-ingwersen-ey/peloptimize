@@ -19,16 +19,22 @@ classifiers = [
 Changelog = "https://github.com/ingwersen-erik/peloptimize/releases"
 
 [tool.poetry.dependencies]
-python = ">=3.7,<=3.10"
+python = ">=3.8,<=3.10"
 black = { version = ">=21.10b0", optional = false }
+dateutils = { version = "^0.6.12", optional = false }
 flake8 = { version = ">=4.0.1", optional = false }
+flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2", optional = false }
 flake8-bandit = { version = ">=2.1.2", optional = false }
 flake8-bugbear = { version = ">=21.9.2", optional = false }
 flake8-docstrings = { version = ">=1.6.0", optional = false }
 flake8-rst-docstrings = { version = ">=0.2.5", optional = false }
-flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2", optional = false }
+nox = { version = "^2022.11.21", optional = false }
+numpy = { version = "^1.24.1", optional = false }
+pandas = { version = "^1.5.2", optional = false }
+pyodbc = { version = "^4.0.35", optional = false }
+pyspark = { version = "^3.3.1", optional = false }
 python-dotenv = { version = "^0.19.2", optional = false }
-nox = "^2022.11.21"
+scikit-learn = { version = "^1.2.0", optional = false }
 
 
 [tool.poetry.dev-dependencies]

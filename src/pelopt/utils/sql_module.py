@@ -1,4 +1,5 @@
 from asyncio.log import logger
+import datetime as dt
 from datetime import datetime, timedelta
 import numpy as np
 import pandas as pd
@@ -6,8 +7,11 @@ import re
 import pyodbc
 import time
 import pytz
+from sqlalchemy import text
 
-from pelopt.config import TZ_SAO_PAULO
+from pelopt import spark
+from pelopt.config import DEFAULT_TFIM, DEFAULT_TINI, TZ_SAO_PAULO
+from pelopt.tags import dicTags, taglist
 from pelopt.utils.model_module import format_key, format_value
 from pelopt.utils.utils import completarTabela, getSeq
 
@@ -119,12 +123,11 @@ class sqlModule(SqlCredentials):
             sqlVar += "variavel = ? or "
 
         cursor = self.cursor
-
-        cursor.execute(
-            f"select variavel, data, idusina from {prefix}.UltDataTag where "
-            f"idusina = ? and {sqlVar[:-4]} ",
-            [usina] + taglab,
+        query = text(
+            "SELECT variavel, data, idusina FROM :PREFIX.UltDataTag WHERE "
+            "idusina = ? AND :sqlVar"
         )
+        cursor.execute(query, [usina, *taglab], prefix=self.prefix, sqlVar=sqlVar[:-4])
         row = cursor.fetchall()
         cursor.commit()
         self.cnxn.close()
@@ -141,7 +144,7 @@ class sqlModule(SqlCredentials):
             while writeControl < 5:
                 try:
                     (
-                        sqlContext.createDataFrame(ult_dado)
+                        spark.sqlContext.createDataFrame(ult_dado)
                         .write.format("jdbc")
                         .option(
                             "url",
@@ -196,11 +199,14 @@ class sqlModule(SqlCredentials):
         cursor = self.cursor
 
         # captura a data maxima de cada variável do ``taglab``
+        query = text(
+            "SELECT variavel, MAX(data) AS max_date FROM "
+            ":prefix.fVarpims_:param WHERE "
+            "idUsina = ? AND calculado = 0 AND :sqlVar GROUP BY variavel"
+        )
         cursor.execute(
-            f"select variavel, MAX(data) as max_date from {prefix}.fVarpims_"
-            f"{param} where idUsina = ? and calculado = 0 and {sqlVar[:-4]} "
-            f"GROUP BY variavel",
-            [usina] + list(taglab),
+            query, [usina] + list(taglab), prefix=self.prefix, param=param,
+            sqlVar=sqlVar[:-4]
         )
         row = cursor.fetchall()
         cursor.commit()
@@ -240,9 +246,13 @@ class sqlModule(SqlCredentials):
 
         cnxn = self.cnxn
         cursor = self.cursor
+        query = text(
+            "SELECT MAX(data) FROM "
+            "pel_op.fVarpims WHERE "
+            "variavel = :taglab AND idUsina = :usina AND calculado = 0"
+        )
         cursor.execute(
-            "select MAX(data) from pel_op.fVarpims where variavel = '{}' and "
-            "idUsina = {} and calculado = 0".format(taglab, usina)
+            query, [usina] + list(taglab), taglab=taglab, usina=usina,
         )
         row = cursor.fetchone()
         cursor.commit()
@@ -261,13 +271,13 @@ class sqlModule(SqlCredentials):
             try:
                 cnxn = self.cnxn
                 cursor = self.cursor
-                cursor.execute(
-                    "select MIN(ult_pred), count(ID) from "
-                    + prefix
-                    + ".UltData where idUsina = {} and idModelo <> 0".format(
-                        usina
-                    )
+                query = text(
+                    "SELECT MIN(ult_pred), count(ID) FROM "
+                    ":prefix.UltData WHERE "
+                    "idUsina = :usina AND idModelo <> 0"
                 )
+                cursor.execute(query, usina=usina)
+
                 row = cursor.fetchone()
 
                 cursor.commit()
@@ -288,7 +298,7 @@ class sqlModule(SqlCredentials):
                 else:
                     ultima_previsao = pd.to_datetime(row[0])
 
-                tini = ultima_previsao - datetime.timedelta(hours=12)
+                tini = ultima_previsao - dt.timedelta(hours=12)
                 tfim = hora_agora
                 break
             except Exception as err:  # pylint: disable=broad-except
@@ -309,11 +319,14 @@ class sqlModule(SqlCredentials):
                 cnxn = self.cnxn
                 cursor = self.cursor
 
-                cursor.execute(
-                    "select ult_pred from " + prefix + ".UltData where "
-                    "idUsina = {} and "
-                    "idModelo = {}".format(usina, modelo)
+                query = text(
+                    "SELECT ult_pred FROM "
+                    ":prefix.UltData WHERE "
+                    "idUsina = :usina AND idModelo = :modelo"
                 )
+                cursor.execute(query, prefix=self.prefix, usina=usina,
+                               modelo=modelo)
+
                 row = cursor.fetchone()
 
                 cursor.commit()
@@ -327,7 +340,7 @@ class sqlModule(SqlCredentials):
                 ultima_previsao = pd.to_datetime(row[0])
                 if row is None:
                     ultima_previsao = datetime(2019, 1, 1, 0, 0, 0)
-                tini = ultima_previsao - datetime.timedelta(hours=72)
+                tini = ultima_previsao - dt.timedelta(hours=72)
                 tfim = hora_agora
                 break
             except Exception as err:  # pylint: disable=broad-except
@@ -343,11 +356,13 @@ class sqlModule(SqlCredentials):
     def getIDUsinaModelo(self, modelo, usina):
         cnxn = self.cnxn
         cursor = self.cursor
-        cursor.execute(
-            "select idUsina_modelo from " + prefix + ".DUsina_modelo where "
-            "idModelo = {} and "
-            "idUsina = {}".format(modelo, usina)
+        query = text(
+            "SELECT idUsina_modelo FROM "
+            ":prefix.DUsina_modelo WHERE "
+            "idUsina = :usina AND idModelo = :modelo"
         )
+        cursor.execute(query, prefix=self.prefix, usina=usina, modelo=modelo)
+
         row = cursor.fetchone()
         cursor.commit()
         cnxn.close()
@@ -371,7 +386,7 @@ class sqlModule(SqlCredentials):
         pd.DataFrame
             DataFrame with all data from old LAB Tags.
         """
-        # Gera df_lab dependendo do grupo de usinas: Tubarão, SL, VGR
+        # Gera `df_lab` dependendo do grupo de usinas: Tubarão, SL, VGR
         tagdl = self.tagPIMStoDataLake(tagpims)
         taglist = pd.DataFrame({"tagdl": tagdl, "tagpims": tagpims})
         if "@1N" in taglist["tagpims"][0]:
@@ -393,7 +408,7 @@ class sqlModule(SqlCredentials):
                 try:
                     df_lab = df_lab.toPandas()
                     break
-                except Exception as err:
+                except Exception as err:  # pylint: disable=broad-except
                     logger.exception(err)
                     time.sleep(10 * writeControl)
                     writeControl += 1
@@ -407,9 +422,8 @@ class sqlModule(SqlCredentials):
     # getLabData Recupera os DADOS de LAB antigos no PI System
     def getLabData_pisystem(self, tagpims, taglist, tini, tfim, n_usina):
         taglist = taglist[taglist["tagpims"].isin(tagpims)]
-        # gera `df_lab` dependendo do grupo de usinas: Tubarão, SL, VGR
+        # Gera `df_lab` dependendo do grupo de usinas: Tubarão, SL, VGR
         tagdl = taglist.tagdl
-        # geraSQL_pisystem = []
         sql1 = sqlModule().geraSQL_pisystem(
             tini,
             tfim,
@@ -484,10 +498,13 @@ class sqlModule(SqlCredentials):
 
         cnxn = self.cnxn
         cursor = self.cursor
-        cursor.execute(
-            f"select ult_pred from {prefix}.UltData where idUsina = {usina} "
-            f"and idModelo = 0"
+        query = text(
+            "SELECT ult_pred FROM "
+            ":prefix.DUsina_modelo WHERE "
+            "idUsina = :usina AND idModelo = 0"
         )
+        cursor.execute(query, prefix=self.prefix, usina=usina)
+
         row = cursor.fetchone()
         cursor.commit()
         cnxn.close()
@@ -569,15 +586,15 @@ class sqlModule(SqlCredentials):
 
         Parameters
         ----------
-        tini : datetime.datetime
+        tini : datetime
             Data/hora de início da extração dos dados de entrada.
         tfim : datetime
-            data/hora de fim da extração de dados
+            data/hora de fim da extração de dados.
         taglist : pd.DataFrame
             de-para entre formato novo do ``pi_system`` e a antiga nomenclatura
-            do pims
+            do pims.
         source : str
-            obsoleto
+            obsoleto.
         table : str
             tabela de extração dos dados
 
@@ -769,7 +786,7 @@ class sqlModule(SqlCredentials):
     # no teste do PIsystem, var usina está errado, vai buscar usina 108 numa
     # tabela que so tem Usina 8
     def getFVarParam(
-        self, usina, tini, tfim, taglist, fimFormat=True, param=""
+        self, usina, tini, tfim, taglist, fimFormat = True, param = ""
     ):
         cnxn = self.cnxn
         cursor = self.cursor
@@ -786,7 +803,7 @@ class sqlModule(SqlCredentials):
       SELECT
           data, variavel, valor
       FROM
-          {prefix}.fVarpims_{param}
+          {self.prefix}.fVarpims_{param}
       WHERE
           ( {vars_query} )
       AND
@@ -795,8 +812,8 @@ class sqlModule(SqlCredentials):
           """
         if fimFormat:
             sql1 += (
-                "data BETWEEN '{}' AND '{:%Y-%m-%d %H:%M:00}'"
-            ).format(tini, tfim)
+                f"data BETWEEN '{tini}' AND '{tfim:%Y-%m-%d %H:%M:00}'"
+            )
         else:
             sql1 += f"data BETWEEN '{tini}' AND '{tfim}'"
 
@@ -820,7 +837,7 @@ class sqlModule(SqlCredentials):
     #       df[dicTags[tagCheck]].head()
     #     except:
     #       log.info('Recuperando TAG: {}'.format(tagCheck))
-    #       tiniCheck = tini - datetime.timedelta(hours=1000)
+    #       tiniCheck = tini - dt.timedelta(hours=1000)
     #       dfCheck = self.spark.sql(sqlModule().geraSQL1(tiniCheck, tfim,
     #       taglistCheck)).select("*")
     #       if dfCheck.count() > 0:
@@ -832,9 +849,9 @@ class sqlModule(SqlCredentials):
     #       else:
     #         log.debug("Nenhum dado foi recuperado")
 
-    # REF getTAGsDelay - Verifica se TAG em análise tem dados no df. Caso
+    # REF getTAGsDelay — Verifica se TAG em análise tem dados no df. Caso
     # nao tenha, consulta mais 3 dias para trás de tini, pega o último valor
-    # histórico dela e coloca como valor dessa tag para todos os registros
+    # histórico dela e coloca como valor dessa TAG para todos os registros
     # do df
     def getTAGsDelay(self, df, tini, tfim, tagpims, taglist):
         dicTags = dict(zip(taglist.tagdl, taglist.tagpims))
@@ -851,7 +868,7 @@ class sqlModule(SqlCredentials):
                 ).select("*")
                 if dfCheck.count() > 0:
                     dfCheck = dfCheck.toPandas()  # puxa dados e converte df
-                    # spark para df pandas
+                    # Spark para df pandas
                     dfCheck.ts = pd.to_datetime(dfCheck.ts, unit="ms")
 
                     dfCheck = dfCheck.fillna(99999)
@@ -890,10 +907,12 @@ class sqlModule(SqlCredentials):
         tagdl2 = self.tagPIMStoDataLake(lTasgs)
         taglist2 = pd.DataFrame({"tagdl": tagdl2, "tagpims": lTasgs})
 
+        from pelopt.config import DEFAULT_TFIM, DEFAULT_TINI
         sql1 = sqlModule().geraSQL1(
-            (tini - datetime.timedelta(hours=maxHours)), tfim, taglist2
-        )  # gera query
-        df2 = self.spark.sql(sql1)  # puxa dados
+            (DEFAULT_TINI - dt.timedelta(hours=maxHours)), DEFAULT_TFIM,
+            taglist2
+        )
+        df2 = self.spark.sql(sql1)
 
         writeControl = 1
         while writeControl < 5:
@@ -901,7 +920,8 @@ class sqlModule(SqlCredentials):
                 df2 = df2.toPandas()  # puxa dados e converte df spark para
                 # df pandas
                 break
-            except Exception as e:
+            except Exception as err:
+                logger.exception(err)
                 logger.debug(f"Sleep for {writeControl * 20} seconds...")
                 time.sleep(20 * writeControl)
                 writeControl += 1
@@ -929,14 +949,15 @@ class sqlModule(SqlCredentials):
             taglistCheck = taglist[taglist["tagpims"] == tagCheck]
             try:
                 df[dicTags[tagCheck]].shape
-            except:
-                print("Recuperando TAG: {}".format(tagCheck))
-                tiniCheck = tini - datetime.timedelta(hours=maxHours)
+            except Exception as err:
+                logger.exception(err)
+                logger.info("Recuperando TAG: %s", tagCheck)
+                tiniCheck = DEFAULT_TINI - dt.timedelta(hours=maxHours)
                 dfCheck = self.spark.sql(
-                    sqlModule().geraSQL1(tiniCheck, tfim, taglistCheck)
+                    sqlModule().geraSQL1(tiniCheck, DEFAULT_TFIM, taglistCheck)
                 ).select("*")
                 if dfCheck.count() > 0:
-                    dfCheck = dfCheck.toPandas()  # puxa dados e converte df
+                    dfCheck = dfCheck.toPandas()
                     # spark para df pandas
                     dfCheck.ts = pd.to_datetime(dfCheck.ts, unit="ms")
                     df[dicTags[dfCheck.name[0]]] = dfCheck[
@@ -962,21 +983,33 @@ class sqlModule(SqlCredentials):
     # tagPIMStoDataLake_v1 — Versão antiga que fazia a conversao das TAGs do
     # formato do PIMs para o formato utilizado no DATALAKE
     def tagPIMStoDataLake(self, tagList):
+        """Convert tag names from PIMs to the format used on the DataLake.
+
+        Parameters
+        ----------
+        tagList : List[str]
+            List of tags to convert.
+
+        Returns
+        -------
+        List[str]
+            List of converted tags.
+        """
         return [
             re.sub(
                 "[^a-zA-Z0-9_]",
                 "_",
-                t.replace("_-", "_ME")
+                tag.replace("_-", "_ME")
                 .replace("_+", "_MA")
                 .replace("-ANLG", ""),
             ).upper()
             + "__3600"
-            for t in tagList
+            for tag in tagList
         ]
 
-    # tagPIMStoDataLake - Convert uma lista de TAGs no formato do PIMs para
+    # tagPIMStoDataLake — Convert uma lista de TAGs no formato do PIMs para
     # o formato utilizado no DATALAKE
-    # ANLG é uma sintaxe existente em algumas poucas tags de VGR, mas que nao
+    # ANLG é uma sintaxe existente em algumas poucas tags de VGR, mas que não
     # existe no datalake e deve ser, portanto removido.
 
     # versão trazida do utils
@@ -1077,7 +1110,7 @@ class sqlModule(SqlCredentials):
     # trataTabela -- inicializa dataframe e formata datas de inicio e fim
     def trataTabela(self, modelo, tabDatas, dicTarget, dicParametros):
         dfVAR = pd.DataFrame()
-        tini = tabDatas.loc[modelo, "ult_dt_target"] + datetime.timedelta(
+        tini = tabDatas.loc[modelo, "ult_dt_target"] + dt.timedelta(
             hours=1
         )
         tfim = tabDatas.loc[modelo, "ult_dt_var"]
@@ -1121,29 +1154,30 @@ class sqlModule(SqlCredentials):
     # salvaUltData - grava ultima data de predição para o modelo
     # no teste do PIsystem, var usina OK, vai buscar usina 108
     def salvaUltData(self, ult_pred, usina, modelo, ultima_previsao):
-        """salva última data/hora de inserção das tags na tabela UltData
+        """Salva última data/hora de inserção das tags na tabela UltData
 
         Sobre as condicionais if/else
-        ----------
+        -----------------------------
         if ultima_previsao == (datetime(2019, 1, 1, 0, 0, 0)):
             insere última data
         else:
-            faz update da última data
+            Atualiza última data
 
         Parameters
         ----------
-        ult_pred : datetime.datetime
+        ult_pred : datetime
             última data da carga a inserir na tabela
             Input data.
         usina : int
+            ID da usina
 
 
         Local variables, sql tables
-        ----------
+        ---------------------------
         UltDataTag : sql table
-            armazena a última data de inserção das tags de laboratório
-        sqlVar : string
-            variável usada na execução de query para restringir (via WHERE)
+            Armazena a última data de inserção das tags de laboratório
+        sqlVar : str
+            Variável usada na execução de query para restringir (via WHERE)
             as tags selecionadas
         """
         cnxn = self.cnxn
@@ -1203,7 +1237,7 @@ class sqlModule(SqlCredentials):
             return idVariavel.values[0]
         return x
 
-    # buscaIDVariavel2 -- busca ID da variaval no banco SQL
+    # buscaIDVariavel2 -- busca ID da variável no banco SQL
     def buscaIDVariavel2(self, x, df_DVariavel):
         idVariavel = df_DVariavel.loc[
             df_DVariavel["descricao"] == x, "idVariavel"
@@ -1212,7 +1246,7 @@ class sqlModule(SqlCredentials):
             return idVariavel.values[0]
         return x
 
-    # getIDVariavel -- Recupera idUsina_modelo da tabela DUsina_modelo
+    # getIDVariavel - Recupera idUsina_modelo da tabela DUsina_modelo
     def getIDVariavel(self, usina_modelo):
         cnxn = self.cnxn
         cursor = self.cursor

@@ -1,14 +1,27 @@
 """
 Module contains the names of the TAGs required to run the program.
 
-These TAGs are divided into three categories:
+These TAGs are divided into four categories:
 
-  can be optimized, to reduce operation costs.
 - ``taglab``: TAGs that represent data received from the laboratory.
 - ``tagpims``: TAGs used to diagnose the pelletizing process.
 - ``tagOTM``: TAGs that represent sub-steps of the pelletizing process that
 - ``tagcalc``: TAGs obtained by combining the data from other TAGs.
+
+Aside from the tag groups listed above, the module also instantiates the
+following variables:
+
+- ``all_tags``: List of all TAGs used in the program.
+- ``tagdl``: List of all TAGs that the program uses, using datalake convention.
+- ``dicTags``: Maps  ``tagdl`` to ``all_tags``.
+- ``taglist``: DataFrame with columns ``tagdl`` and ``tagpims``.
+
 """
+import pandas as pd
+
+from pelopt.helpers.tag_utils import tag_pims_to_adls
+
+
 # Conjunto de TAGs de Laboratório
 taglab = [
     "ABRA_-0,5_PQ_L@08QU",
@@ -1324,3 +1337,7 @@ tag_calc = [
 ]
 
 all_tags = tagpims + taglab + tagOTM + tag_calc
+
+tagdl = tag_pims_to_adls(all_tags)
+dicTags = dict(zip(tagdl, all_tags))
+taglist = pd.DataFrame({'tagdl': tagdl, 'tagpims': all_tags})

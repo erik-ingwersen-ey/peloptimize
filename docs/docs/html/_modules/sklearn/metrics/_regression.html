@@ -1,0 +1,1325 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.09.29"/>
+        <title>sklearn.metrics._regression - Peloptimize documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Peloptimize  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for sklearn.metrics._regression</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Metrics to assess performance on regression task.</span>
+
+<span class="sd">Functions named as ``*_score`` return a scalar value to maximize: the higher</span>
+<span class="sd">the better.</span>
+
+<span class="sd">Function named as ``*_error`` or ``*_loss`` return a scalar value to minimize:</span>
+<span class="sd">the lower the better.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Authors: Alexandre Gramfort &lt;alexandre.gramfort@inria.fr&gt;</span>
+<span class="c1">#          Mathieu Blondel &lt;mathieu@mblondel.org&gt;</span>
+<span class="c1">#          Olivier Grisel &lt;olivier.grisel@ensta.org&gt;</span>
+<span class="c1">#          Arnaud Joly &lt;a.joly@ulg.ac.be&gt;</span>
+<span class="c1">#          Jochen Wersdorfer &lt;jochen@wersdoerfer.de&gt;</span>
+<span class="c1">#          Lars Buitinck</span>
+<span class="c1">#          Joel Nothman &lt;joel.nothman@gmail.com&gt;</span>
+<span class="c1">#          Karan Desai &lt;karandesai281196@gmail.com&gt;</span>
+<span class="c1">#          Noel Dawe &lt;noel@dawe.me&gt;</span>
+<span class="c1">#          Manoj Kumar &lt;manojkumarsivaraj334@gmail.com&gt;</span>
+<span class="c1">#          Michael Eickenberg &lt;michael.eickenberg@gmail.com&gt;</span>
+<span class="c1">#          Konstantin Shmelkov &lt;konstantin.shmelkov@polytechnique.edu&gt;</span>
+<span class="c1">#          Christian Lorentzen &lt;lorentzen.ch@googlemail.com&gt;</span>
+<span class="c1">#          Ashutosh Hathidara &lt;ashutoshhathidara98@gmail.com&gt;</span>
+<span class="c1">#          Uttam kumar &lt;bajiraouttamsinha@gmail.com&gt;</span>
+<span class="c1"># License: BSD 3 clause</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.._loss.glm_distribution</span> <span class="kn">import</span> <span class="n">TweedieDistribution</span>
+<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">UndefinedMetricWarning</span>
+<span class="kn">from</span> <span class="nn">..utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">check_array</span><span class="p">,</span>
+    <span class="n">check_consistent_length</span><span class="p">,</span>
+    <span class="n">_num_samples</span><span class="p">,</span>
+    <span class="n">column_or_1d</span><span class="p">,</span>
+    <span class="n">_check_sample_weight</span><span class="p">,</span>
+    <span class="n">_deprecate_positional_args</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..utils.stats</span> <span class="kn">import</span> <span class="n">_weighted_percentile</span>
+
+
+<span class="n">__ALL__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;max_error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_absolute_error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_squared_error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_squared_log_error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;median_absolute_error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_absolute_percentage_error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_pinball_loss&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;r2_score&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;explained_variance_score&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_tweedie_deviance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_poisson_deviance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;mean_gamma_deviance&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">_check_reg_targets</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;numeric&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that y_true and y_pred belong to the same regression task.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like</span>
+
+<span class="sd">    y_pred : array-like</span>
+
+<span class="sd">    multioutput : array-like or string in [&#39;raw_values&#39;, uniform_average&#39;,</span>
+<span class="sd">        &#39;variance_weighted&#39;] or None</span>
+<span class="sd">        None is accepted due to backward compatibility of r2_score().</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    type_true : one of {&#39;continuous&#39;, continuous-multioutput&#39;}</span>
+<span class="sd">        The type of the true target data, as output by</span>
+<span class="sd">        &#39;utils.multiclass.type_of_target&#39;.</span>
+
+<span class="sd">    y_true : array-like of shape (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    multioutput : array-like of shape (n_outputs) or string in [&#39;raw_values&#39;,</span>
+<span class="sd">        uniform_average&#39;, &#39;variance_weighted&#39;] or None</span>
+<span class="sd">        Custom output weights if ``multioutput`` is array-like or</span>
+<span class="sd">        just the corresponding argument if ``multioutput`` is a</span>
+<span class="sd">        correct keyword.</span>
+
+<span class="sd">    dtype : str or list, default=&quot;numeric&quot;</span>
+<span class="sd">        the dtype argument passed to check_array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">y_true</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">y_true</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;y_true and y_pred have different number of output (</span><span class="si">{0}</span><span class="s2">!=</span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">n_outputs</span> <span class="o">=</span> <span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">allowed_multioutput_str</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;raw_values&quot;</span><span class="p">,</span> <span class="s2">&quot;uniform_average&quot;</span><span class="p">,</span> <span class="s2">&quot;variance_weighted&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multioutput</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_multioutput_str</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Allowed &#39;multioutput&#39; string values are </span><span class="si">{}</span><span class="s2">. &quot;</span>
+                <span class="s2">&quot;You provided multioutput=</span><span class="si">{!r}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">allowed_multioutput_str</span><span class="p">,</span> <span class="n">multioutput</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">multioutput</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">multioutput</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_outputs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Custom weights are useful only in multi-output cases.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">n_outputs</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">multioutput</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;There must be equally many custom weights (</span><span class="si">%d</span><span class="s2">) as outputs (</span><span class="si">%d</span><span class="s2">).&quot;</span>
+                <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">multioutput</span><span class="p">),</span> <span class="n">n_outputs</span><span class="p">)</span>
+            <span class="p">)</span>
+    <span class="n">y_type</span> <span class="o">=</span> <span class="s2">&quot;continuous&quot;</span> <span class="k">if</span> <span class="n">n_outputs</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;continuous-multioutput&quot;</span>
+
+    <span class="k">return</span> <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+
+
+<span class="k">def</span> <span class="nf">mean_absolute_error</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mean absolute error regression loss.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;mean_absolute_error&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;}  or array-like of shape \</span>
+<span class="sd">            (n_outputs,), default=&#39;uniform_average&#39;</span>
+<span class="sd">        Defines aggregating of multiple output values.</span>
+<span class="sd">        Array-like value defines weights used to average errors.</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of errors in case of multioutput input.</span>
+
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Errors of all outputs are averaged with uniform weight.</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float or ndarray of floats</span>
+<span class="sd">        If multioutput is &#39;raw_values&#39;, then mean absolute error is returned</span>
+<span class="sd">        for each output separately.</span>
+<span class="sd">        If multioutput is &#39;uniform_average&#39; or an ndarray of weights, then the</span>
+<span class="sd">        weighted average of all output errors is returned.</span>
+
+<span class="sd">        MAE output is non-negative floating point. The best value is 0.0.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import mean_absolute_error</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_error(y_true, y_pred)</span>
+<span class="sd">    0.5</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1], [-1, 1], [7, -6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0, 2], [-1, 2], [8, -5]]</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_error(y_true, y_pred)</span>
+<span class="sd">    0.75</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_error(y_true, y_pred, multioutput=&#39;raw_values&#39;)</span>
+<span class="sd">    array([0.5, 1. ])</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_error(y_true, y_pred, multioutput=[0.3, 0.7])</span>
+<span class="sd">    0.85...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+    <span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+    <span class="n">output_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;raw_values&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output_errors</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;uniform_average&quot;</span><span class="p">:</span>
+            <span class="c1"># pass None as weights to np.average: uniform mean</span>
+            <span class="n">multioutput</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">output_errors</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">multioutput</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">mean_pinball_loss</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pinball loss for quantile regression.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;pinball_loss&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    alpha: float, slope of the pinball loss, default=0.5,</span>
+<span class="sd">        this loss is equivalent to :ref:`mean_absolute_error` when `alpha=0.5`,</span>
+<span class="sd">        `alpha=0.95` is minimized by estimators of the 95th percentile.</span>
+
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;}  or array-like of shape \</span>
+<span class="sd">            (n_outputs,), default=&#39;uniform_average&#39;</span>
+<span class="sd">        Defines aggregating of multiple output values.</span>
+<span class="sd">        Array-like value defines weights used to average errors.</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of errors in case of multioutput input.</span>
+
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Errors of all outputs are averaged with uniform weight.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float or ndarray of floats</span>
+<span class="sd">        If multioutput is &#39;raw_values&#39;, then mean absolute error is returned</span>
+<span class="sd">        for each output separately.</span>
+<span class="sd">        If multioutput is &#39;uniform_average&#39; or an ndarray of weights, then the</span>
+<span class="sd">        weighted average of all output errors is returned.</span>
+
+<span class="sd">        The pinball loss output is a non-negative floating point. The best</span>
+<span class="sd">        value is 0.0.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import mean_pinball_loss</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [1, 2, 3]</span>
+<span class="sd">    &gt;&gt;&gt; mean_pinball_loss(y_true, [0, 2, 3], alpha=0.1)</span>
+<span class="sd">    0.03...</span>
+<span class="sd">    &gt;&gt;&gt; mean_pinball_loss(y_true, [1, 2, 4], alpha=0.1)</span>
+<span class="sd">    0.3...</span>
+<span class="sd">    &gt;&gt;&gt; mean_pinball_loss(y_true, [0, 2, 3], alpha=0.9)</span>
+<span class="sd">    0.3...</span>
+<span class="sd">    &gt;&gt;&gt; mean_pinball_loss(y_true, [1, 2, 4], alpha=0.9)</span>
+<span class="sd">    0.03...</span>
+<span class="sd">    &gt;&gt;&gt; mean_pinball_loss(y_true, y_true, alpha=0.1)</span>
+<span class="sd">    0.0</span>
+<span class="sd">    &gt;&gt;&gt; mean_pinball_loss(y_true, y_true, alpha=0.9)</span>
+<span class="sd">    0.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+    <span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span>
+    <span class="n">sign</span> <span class="o">=</span> <span class="p">(</span><span class="n">diff</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">diff</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">diff</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sign</span><span class="p">)</span> <span class="o">*</span> <span class="n">diff</span>
+    <span class="n">output_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;raw_values&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output_errors</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;uniform_average&quot;</span><span class="p">:</span>
+            <span class="c1"># pass None as weights to np.average: uniform mean</span>
+            <span class="n">multioutput</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;multioutput is expected to be &#39;raw_values&#39; &quot;</span>
+                <span class="s2">&quot;or &#39;uniform_average&#39; but we got </span><span class="si">%r</span><span class="s2">&quot;</span>
+                <span class="s2">&quot; instead.&quot;</span> <span class="o">%</span> <span class="n">multioutput</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">output_errors</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">multioutput</span><span class="p">)</span>
+
+
+<span class="nd">@_deprecate_positional_args</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.1&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">mean_absolute_percentage_error</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mean absolute percentage error (MAPE) regression loss.</span>
+
+<span class="sd">    Note here that the output is not a percentage in the range [0, 100]</span>
+<span class="sd">    and a value of 100 does not mean 100% but 1e2. Furthermore, the output</span>
+<span class="sd">    can be arbitrarily high when `y_true` is small (which is specific to the</span>
+<span class="sd">    metric) or when `abs(y_true - y_pred)` is large (which is common for most</span>
+<span class="sd">    regression metrics). Read more in the</span>
+<span class="sd">    :ref:`User Guide &lt;mean_absolute_percentage_error&gt;`.</span>
+
+<span class="sd">    .. versionadded:: 0.24</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;} or array-like</span>
+<span class="sd">        Defines aggregating of multiple output values.</span>
+<span class="sd">        Array-like value defines weights used to average errors.</span>
+<span class="sd">        If input is list then the shape must be (n_outputs,).</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of errors in case of multioutput input.</span>
+
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Errors of all outputs are averaged with uniform weight.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float or ndarray of floats</span>
+<span class="sd">        If multioutput is &#39;raw_values&#39;, then mean absolute percentage error</span>
+<span class="sd">        is returned for each output separately.</span>
+<span class="sd">        If multioutput is &#39;uniform_average&#39; or an ndarray of weights, then the</span>
+<span class="sd">        weighted average of all output errors is returned.</span>
+
+<span class="sd">        MAPE output is non-negative floating point. The best value is 0.0.</span>
+<span class="sd">        But note that bad predictions can lead to arbitrarily large</span>
+<span class="sd">        MAPE values, especially if some `y_true` values are very close to zero.</span>
+<span class="sd">        Note that we return a large value instead of `inf` when `y_true` is zero.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import mean_absolute_percentage_error</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_percentage_error(y_true, y_pred)</span>
+<span class="sd">    0.3273...</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1], [-1, 1], [7, -6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0, 2], [-1, 2], [8, -5]]</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_percentage_error(y_true, y_pred)</span>
+<span class="sd">    0.5515...</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_percentage_error(y_true, y_pred, multioutput=[0.3, 0.7])</span>
+<span class="sd">    0.6198...</span>
+<span class="sd">    &gt;&gt;&gt; # the value when some element of the y_true is zero is arbitrarily high because</span>
+<span class="sd">    &gt;&gt;&gt; # of the division by epsilon</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [1., 0., 2.4, 7.]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [1.2, 0.1, 2.4, 8.]</span>
+<span class="sd">    &gt;&gt;&gt; mean_absolute_percentage_error(y_true, y_pred)</span>
+<span class="sd">    112589990684262.48</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+    <span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
+    <span class="n">mape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_true</span><span class="p">),</span> <span class="n">epsilon</span><span class="p">)</span>
+    <span class="n">output_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">mape</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;raw_values&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output_errors</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;uniform_average&quot;</span><span class="p">:</span>
+            <span class="c1"># pass None as weights to np.average: uniform mean</span>
+            <span class="n">multioutput</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">output_errors</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">multioutput</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="mean_squared_error"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.mean_squared_error">[docs]</a><span class="k">def</span> <span class="nf">mean_squared_error</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mean squared error regression loss.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;mean_squared_error&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;} or array-like of shape \</span>
+<span class="sd">            (n_outputs,), default=&#39;uniform_average&#39;</span>
+<span class="sd">        Defines aggregating of multiple output values.</span>
+<span class="sd">        Array-like value defines weights used to average errors.</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of errors in case of multioutput input.</span>
+
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Errors of all outputs are averaged with uniform weight.</span>
+
+<span class="sd">    squared : bool, default=True</span>
+<span class="sd">        If True returns MSE value, if False returns RMSE value.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float or ndarray of floats</span>
+<span class="sd">        A non-negative floating point value (the best value is 0.0), or an</span>
+<span class="sd">        array of floating point values, one for each individual target.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import mean_squared_error</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred)</span>
+<span class="sd">    0.375</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred, squared=False)</span>
+<span class="sd">    0.612...</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1],[-1, 1],[7, -6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0, 2],[-1, 2],[8, -5]]</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred)</span>
+<span class="sd">    0.708...</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred, squared=False)</span>
+<span class="sd">    0.822...</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred, multioutput=&#39;raw_values&#39;)</span>
+<span class="sd">    array([0.41666667, 1.        ])</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_error(y_true, y_pred, multioutput=[0.3, 0.7])</span>
+<span class="sd">    0.825...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+    <span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+    <span class="n">output_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">squared</span><span class="p">:</span>
+        <span class="n">output_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">output_errors</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;raw_values&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output_errors</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;uniform_average&quot;</span><span class="p">:</span>
+            <span class="c1"># pass None as weights to np.average: uniform mean</span>
+            <span class="n">multioutput</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">output_errors</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">multioutput</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">mean_squared_log_error</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mean squared logarithmic error regression loss.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;mean_squared_log_error&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;} or array-like of shape \</span>
+<span class="sd">            (n_outputs,), default=&#39;uniform_average&#39;</span>
+
+<span class="sd">        Defines aggregating of multiple output values.</span>
+<span class="sd">        Array-like value defines weights used to average errors.</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of errors when the input is of multioutput</span>
+<span class="sd">            format.</span>
+
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Errors of all outputs are averaged with uniform weight.</span>
+<span class="sd">    squared : bool, default=True</span>
+<span class="sd">        If True returns MSLE (mean squared log error) value.</span>
+<span class="sd">        If False returns RMSLE (root mean squared log error) value.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float or ndarray of floats</span>
+<span class="sd">        A non-negative floating point value (the best value is 0.0), or an</span>
+<span class="sd">        array of floating point values, one for each individual target.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import mean_squared_log_error</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, 5, 2.5, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 5, 4, 8]</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_log_error(y_true, y_pred)</span>
+<span class="sd">    0.039...</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_log_error(y_true, y_pred, squared=False)</span>
+<span class="sd">    0.199...</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1], [1, 2], [7, 6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0.5, 2], [1, 2.5], [8, 8]]</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_log_error(y_true, y_pred)</span>
+<span class="sd">    0.044...</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_log_error(y_true, y_pred, multioutput=&#39;raw_values&#39;)</span>
+<span class="sd">    array([0.00462428, 0.08377444])</span>
+<span class="sd">    &gt;&gt;&gt; mean_squared_log_error(y_true, y_pred, multioutput=[0.3, 0.7])</span>
+<span class="sd">    0.060...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+    <span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">y_true</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="ow">or</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Mean Squared Logarithmic Error cannot be used when &quot;</span>
+            <span class="s2">&quot;targets contain negative values.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">mean_squared_error</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">y_true</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">y_pred</span><span class="p">),</span>
+        <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+        <span class="n">multioutput</span><span class="o">=</span><span class="n">multioutput</span><span class="p">,</span>
+        <span class="n">squared</span><span class="o">=</span><span class="n">squared</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">median_absolute_error</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Median absolute error regression loss.</span>
+
+<span class="sd">    Median absolute error output is non-negative floating point. The best value</span>
+<span class="sd">    is 0.0. Read more in the :ref:`User Guide &lt;median_absolute_error&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape = (n_samples) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape = (n_samples) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;} or array-like of shape \</span>
+<span class="sd">            (n_outputs,), default=&#39;uniform_average&#39;</span>
+<span class="sd">        Defines aggregating of multiple output values. Array-like value defines</span>
+<span class="sd">        weights used to average errors.</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of errors in case of multioutput input.</span>
+
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Errors of all outputs are averaged with uniform weight.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">        .. versionadded:: 0.24</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float or ndarray of floats</span>
+<span class="sd">        If multioutput is &#39;raw_values&#39;, then mean absolute error is returned</span>
+<span class="sd">        for each output separately.</span>
+<span class="sd">        If multioutput is &#39;uniform_average&#39; or an ndarray of weights, then the</span>
+<span class="sd">        weighted average of all output errors is returned.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import median_absolute_error</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; median_absolute_error(y_true, y_pred)</span>
+<span class="sd">    0.5</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1], [-1, 1], [7, -6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0, 2], [-1, 2], [8, -5]]</span>
+<span class="sd">    &gt;&gt;&gt; median_absolute_error(y_true, y_pred)</span>
+<span class="sd">    0.75</span>
+<span class="sd">    &gt;&gt;&gt; median_absolute_error(y_true, y_pred, multioutput=&#39;raw_values&#39;)</span>
+<span class="sd">    array([0.5, 1. ])</span>
+<span class="sd">    &gt;&gt;&gt; median_absolute_error(y_true, y_pred, multioutput=[0.3, 0.7])</span>
+<span class="sd">    0.85</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">output_errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">_check_sample_weight</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">output_errors</span> <span class="o">=</span> <span class="n">_weighted_percentile</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">),</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;raw_values&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output_errors</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;uniform_average&quot;</span><span class="p">:</span>
+            <span class="c1"># pass None as weights to np.average: uniform mean</span>
+            <span class="n">multioutput</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">output_errors</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">multioutput</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">explained_variance_score</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Explained variance regression score function.</span>
+
+<span class="sd">    Best possible score is 1.0, lower values are worse.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;explained_variance_score&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;, &#39;variance_weighted&#39;} or \</span>
+<span class="sd">            array-like of shape (n_outputs,), default=&#39;uniform_average&#39;</span>
+<span class="sd">        Defines aggregating of multiple output scores.</span>
+<span class="sd">        Array-like value defines weights used to average scores.</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of scores in case of multioutput input.</span>
+
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Scores of all outputs are averaged with uniform weight.</span>
+
+<span class="sd">        &#39;variance_weighted&#39; :</span>
+<span class="sd">            Scores of all outputs are averaged, weighted by the variances</span>
+<span class="sd">            of each individual output.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    score : float or ndarray of floats</span>
+<span class="sd">        The explained variance or ndarray if &#39;multioutput&#39; is &#39;raw_values&#39;.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This is not a symmetric function.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import explained_variance_score</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; explained_variance_score(y_true, y_pred)</span>
+<span class="sd">    0.957...</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1], [-1, 1], [7, -6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0, 2], [-1, 2], [8, -5]]</span>
+<span class="sd">    &gt;&gt;&gt; explained_variance_score(y_true, y_pred, multioutput=&#39;uniform_average&#39;)</span>
+<span class="sd">    0.983...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+    <span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+    <span class="n">y_diff_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">numerator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span> <span class="o">-</span> <span class="n">y_diff_avg</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+
+    <span class="n">y_true_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_true_avg</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">nonzero_numerator</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">nonzero_denominator</span> <span class="o">=</span> <span class="n">denominator</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">valid_score</span> <span class="o">=</span> <span class="n">nonzero_numerator</span> <span class="o">&amp;</span> <span class="n">nonzero_denominator</span>
+    <span class="n">output_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">output_scores</span><span class="p">[</span><span class="n">valid_score</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">numerator</span><span class="p">[</span><span class="n">valid_score</span><span class="p">]</span> <span class="o">/</span> <span class="n">denominator</span><span class="p">[</span><span class="n">valid_score</span><span class="p">])</span>
+    <span class="n">output_scores</span><span class="p">[</span><span class="n">nonzero_numerator</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">nonzero_denominator</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;raw_values&quot;</span><span class="p">:</span>
+            <span class="c1"># return scores individually</span>
+            <span class="k">return</span> <span class="n">output_scores</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;uniform_average&quot;</span><span class="p">:</span>
+            <span class="c1"># passing to np.average() None as weights results is uniform mean</span>
+            <span class="n">avg_weights</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;variance_weighted&quot;</span><span class="p">:</span>
+            <span class="n">avg_weights</span> <span class="o">=</span> <span class="n">denominator</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">avg_weights</span> <span class="o">=</span> <span class="n">multioutput</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">output_scores</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">avg_weights</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="r2_score"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.r2_score">[docs]</a><span class="k">def</span> <span class="nf">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">multioutput</span><span class="o">=</span><span class="s2">&quot;uniform_average&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;:math:`R^2` (coefficient of determination) regression score function.</span>
+
+<span class="sd">    Best possible score is 1.0 and it can be negative (because the</span>
+<span class="sd">    model can be arbitrarily worse). A constant model that always</span>
+<span class="sd">    predicts the expected value of y, disregarding the input features,</span>
+<span class="sd">    would get a :math:`R^2` score of 0.0.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;r2_score&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,) or (n_samples, n_outputs)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    multioutput : {&#39;raw_values&#39;, &#39;uniform_average&#39;, &#39;variance_weighted&#39;}, \</span>
+<span class="sd">            array-like of shape (n_outputs,) or None, default=&#39;uniform_average&#39;</span>
+
+<span class="sd">        Defines aggregating of multiple output scores.</span>
+<span class="sd">        Array-like value defines weights used to average scores.</span>
+<span class="sd">        Default is &quot;uniform_average&quot;.</span>
+
+<span class="sd">        &#39;raw_values&#39; :</span>
+<span class="sd">            Returns a full set of scores in case of multioutput input.</span>
+
+<span class="sd">        &#39;uniform_average&#39; :</span>
+<span class="sd">            Scores of all outputs are averaged with uniform weight.</span>
+
+<span class="sd">        &#39;variance_weighted&#39; :</span>
+<span class="sd">            Scores of all outputs are averaged, weighted by the variances</span>
+<span class="sd">            of each individual output.</span>
+
+<span class="sd">        .. versionchanged:: 0.19</span>
+<span class="sd">            Default value of multioutput is &#39;uniform_average&#39;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    z : float or ndarray of floats</span>
+<span class="sd">        The :math:`R^2` score or ndarray of scores if &#39;multioutput&#39; is</span>
+<span class="sd">        &#39;raw_values&#39;.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This is not a symmetric function.</span>
+
+<span class="sd">    Unlike most other scores, :math:`R^2` score may be negative (it need not</span>
+<span class="sd">    actually be the square of a quantity R).</span>
+
+<span class="sd">    This metric is not well-defined for single samples and will return a NaN</span>
+<span class="sd">    value if n_samples is less than two.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] `Wikipedia entry on the Coefficient of determination</span>
+<span class="sd">            &lt;https://en.wikipedia.org/wiki/Coefficient_of_determination&gt;`_</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import r2_score</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, -0.5, 2, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2.5, 0.0, 2, 8]</span>
+<span class="sd">    &gt;&gt;&gt; r2_score(y_true, y_pred)</span>
+<span class="sd">    0.948...</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [[0.5, 1], [-1, 1], [7, -6]]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [[0, 2], [-1, 2], [8, -5]]</span>
+<span class="sd">    &gt;&gt;&gt; r2_score(y_true, y_pred,</span>
+<span class="sd">    ...          multioutput=&#39;variance_weighted&#39;)</span>
+<span class="sd">    0.938...</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [1, 2, 3]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [1, 2, 3]</span>
+<span class="sd">    &gt;&gt;&gt; r2_score(y_true, y_pred)</span>
+<span class="sd">    1.0</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [1, 2, 3]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [2, 2, 2]</span>
+<span class="sd">    &gt;&gt;&gt; r2_score(y_true, y_pred)</span>
+<span class="sd">    0.0</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [1, 2, 3]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [3, 2, 1]</span>
+<span class="sd">    &gt;&gt;&gt; r2_score(y_true, y_pred)</span>
+<span class="sd">    -3.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">multioutput</span>
+    <span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;R^2 score is not well-defined with less than two samples.&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">UndefinedMetricWarning</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">)</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="n">sample_weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">weight</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">weight</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">nonzero_denominator</span> <span class="o">=</span> <span class="n">denominator</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">nonzero_numerator</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">valid_score</span> <span class="o">=</span> <span class="n">nonzero_denominator</span> <span class="o">&amp;</span> <span class="n">nonzero_numerator</span>
+    <span class="n">output_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">y_true</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="n">output_scores</span><span class="p">[</span><span class="n">valid_score</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">numerator</span><span class="p">[</span><span class="n">valid_score</span><span class="p">]</span> <span class="o">/</span> <span class="n">denominator</span><span class="p">[</span><span class="n">valid_score</span><span class="p">])</span>
+    <span class="c1"># arbitrary set to zero to avoid -inf scores, having a constant</span>
+    <span class="c1"># y_true is not interesting for scoring a regression anyway</span>
+    <span class="n">output_scores</span><span class="p">[</span><span class="n">nonzero_numerator</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">nonzero_denominator</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multioutput</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;raw_values&quot;</span><span class="p">:</span>
+            <span class="c1"># return scores individually</span>
+            <span class="k">return</span> <span class="n">output_scores</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;uniform_average&quot;</span><span class="p">:</span>
+            <span class="c1"># passing None as weights results is uniform mean</span>
+            <span class="n">avg_weights</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">multioutput</span> <span class="o">==</span> <span class="s2">&quot;variance_weighted&quot;</span><span class="p">:</span>
+            <span class="n">avg_weights</span> <span class="o">=</span> <span class="n">denominator</span>
+            <span class="c1"># avoid fail on constant y or one-element arrays</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">nonzero_denominator</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">nonzero_numerator</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="mf">1.0</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">avg_weights</span> <span class="o">=</span> <span class="n">multioutput</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">output_scores</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">avg_weights</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">max_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The max_error metric calculates the maximum residual error.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;max_error&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    max_error : float</span>
+<span class="sd">        A positive floating point value (the best value is 0.0).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import max_error</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [3, 2, 7, 1]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [4, 2, 7, 1]</span>
+<span class="sd">    &gt;&gt;&gt; max_error(y_true, y_pred)</span>
+<span class="sd">    1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_type</span> <span class="o">==</span> <span class="s2">&quot;continuous-multioutput&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Multioutput not supported in max_error&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">mean_tweedie_deviance</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mean Tweedie deviance regression loss.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;mean_tweedie_deviance&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    power : float, default=0</span>
+<span class="sd">        Tweedie power parameter. Either power &lt;= 0 or power &gt;= 1.</span>
+
+<span class="sd">        The higher `p` the less weight is given to extreme</span>
+<span class="sd">        deviations between true and predicted targets.</span>
+
+<span class="sd">        - power &lt; 0: Extreme stable distribution. Requires: y_pred &gt; 0.</span>
+<span class="sd">        - power = 0 : Normal distribution, output corresponds to</span>
+<span class="sd">          mean_squared_error. y_true and y_pred can be any real numbers.</span>
+<span class="sd">        - power = 1 : Poisson distribution. Requires: y_true &gt;= 0 and</span>
+<span class="sd">          y_pred &gt; 0.</span>
+<span class="sd">        - 1 &lt; p &lt; 2 : Compound Poisson distribution. Requires: y_true &gt;= 0</span>
+<span class="sd">          and y_pred &gt; 0.</span>
+<span class="sd">        - power = 2 : Gamma distribution. Requires: y_true &gt; 0 and y_pred &gt; 0.</span>
+<span class="sd">        - power = 3 : Inverse Gaussian distribution. Requires: y_true &gt; 0</span>
+<span class="sd">          and y_pred &gt; 0.</span>
+<span class="sd">        - otherwise : Positive stable distribution. Requires: y_true &gt; 0</span>
+<span class="sd">          and y_pred &gt; 0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float</span>
+<span class="sd">        A non-negative floating point value (the best value is 0.0).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import mean_tweedie_deviance</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [2, 0, 1, 4]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [0.5, 0.5, 2., 2.]</span>
+<span class="sd">    &gt;&gt;&gt; mean_tweedie_deviance(y_true, y_pred, power=1)</span>
+<span class="sd">    1.4260...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_type</span> <span class="o">==</span> <span class="s2">&quot;continuous-multioutput&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Multioutput not supported in mean_tweedie_deviance&quot;</span><span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">)</span>
+        <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">TweedieDistribution</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">)</span>
+    <span class="n">dev</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">unit_deviance</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">mean_poisson_deviance</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mean Poisson deviance regression loss.</span>
+
+<span class="sd">    Poisson deviance is equivalent to the Tweedie deviance with</span>
+<span class="sd">    the power parameter `power=1`.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;mean_tweedie_deviance&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,)</span>
+<span class="sd">        Ground truth (correct) target values. Requires y_true &gt;= 0.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,)</span>
+<span class="sd">        Estimated target values. Requires y_pred &gt; 0.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float</span>
+<span class="sd">        A non-negative floating point value (the best value is 0.0).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import mean_poisson_deviance</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [2, 0, 1, 4]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [0.5, 0.5, 2., 2.]</span>
+<span class="sd">    &gt;&gt;&gt; mean_poisson_deviance(y_true, y_pred)</span>
+<span class="sd">    1.4260...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mean_tweedie_deviance</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">mean_gamma_deviance</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Mean Gamma deviance regression loss.</span>
+
+<span class="sd">    Gamma deviance is equivalent to the Tweedie deviance with</span>
+<span class="sd">    the power parameter `power=2`. It is invariant to scaling of</span>
+<span class="sd">    the target variable, and measures relative errors.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;mean_tweedie_deviance&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,)</span>
+<span class="sd">        Ground truth (correct) target values. Requires y_true &gt; 0.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,)</span>
+<span class="sd">        Estimated target values. Requires y_pred &gt; 0.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    loss : float</span>
+<span class="sd">        A non-negative floating point value (the best value is 0.0).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import mean_gamma_deviance</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [2, 0.5, 1, 4]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [0.5, 0.5, 2., 2.]</span>
+<span class="sd">    &gt;&gt;&gt; mean_gamma_deviance(y_true, y_pred)</span>
+<span class="sd">    1.0568...</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">mean_tweedie_deviance</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">d2_tweedie_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;D^2 regression score function, percentage of Tweedie deviance explained.</span>
+
+<span class="sd">    Best possible score is 1.0 and it can be negative (because the model can be</span>
+<span class="sd">    arbitrarily worse). A model that always uses the empirical mean of `y_true` as</span>
+<span class="sd">    constant prediction, disregarding the input features, gets a D^2 score of 0.0.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;d2_tweedie_score&gt;`.</span>
+
+<span class="sd">    .. versionadded:: 1.0</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,)</span>
+<span class="sd">        Ground truth (correct) target values.</span>
+
+<span class="sd">    y_pred : array-like of shape (n_samples,)</span>
+<span class="sd">        Estimated target values.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), optional</span>
+<span class="sd">        Sample weights.</span>
+
+<span class="sd">    power : float, default=0</span>
+<span class="sd">        Tweedie power parameter. Either power &lt;= 0 or power &gt;= 1.</span>
+
+<span class="sd">        The higher `p` the less weight is given to extreme</span>
+<span class="sd">        deviations between true and predicted targets.</span>
+
+<span class="sd">        - power &lt; 0: Extreme stable distribution. Requires: y_pred &gt; 0.</span>
+<span class="sd">        - power = 0 : Normal distribution, output corresponds to r2_score.</span>
+<span class="sd">          y_true and y_pred can be any real numbers.</span>
+<span class="sd">        - power = 1 : Poisson distribution. Requires: y_true &gt;= 0 and</span>
+<span class="sd">          y_pred &gt; 0.</span>
+<span class="sd">        - 1 &lt; p &lt; 2 : Compound Poisson distribution. Requires: y_true &gt;= 0</span>
+<span class="sd">          and y_pred &gt; 0.</span>
+<span class="sd">        - power = 2 : Gamma distribution. Requires: y_true &gt; 0 and y_pred &gt; 0.</span>
+<span class="sd">        - power = 3 : Inverse Gaussian distribution. Requires: y_true &gt; 0</span>
+<span class="sd">          and y_pred &gt; 0.</span>
+<span class="sd">        - otherwise : Positive stable distribution. Requires: y_true &gt; 0</span>
+<span class="sd">          and y_pred &gt; 0.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    z : float or ndarray of floats</span>
+<span class="sd">        The D^2 score.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This is not a symmetric function.</span>
+
+<span class="sd">    Like R^2, D^2 score may be negative (it need not actually be the square of</span>
+<span class="sd">    a quantity D).</span>
+
+<span class="sd">    This metric is not well-defined for single samples and will return a NaN</span>
+<span class="sd">    value if n_samples is less than two.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Eq. (3.11) of Hastie, Trevor J., Robert Tibshirani and Martin J.</span>
+<span class="sd">           Wainwright. &quot;Statistical Learning with Sparsity: The Lasso and</span>
+<span class="sd">           Generalizations.&quot; (2015). https://trevorhastie.github.io</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.metrics import d2_tweedie_score</span>
+<span class="sd">    &gt;&gt;&gt; y_true = [0.5, 1, 2.5, 7]</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = [1, 1, 5, 3.5]</span>
+<span class="sd">    &gt;&gt;&gt; d2_tweedie_score(y_true, y_pred)</span>
+<span class="sd">    0.285...</span>
+<span class="sd">    &gt;&gt;&gt; d2_tweedie_score(y_true, y_pred, power=1)</span>
+<span class="sd">    0.487...</span>
+<span class="sd">    &gt;&gt;&gt; d2_tweedie_score(y_true, y_pred, power=2)</span>
+<span class="sd">    0.630...</span>
+<span class="sd">    &gt;&gt;&gt; d2_tweedie_score(y_true, y_true, power=2)</span>
+<span class="sd">    1.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_check_reg_targets</span><span class="p">(</span>
+        <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">y_type</span> <span class="o">==</span> <span class="s2">&quot;continuous-multioutput&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Multioutput not supported in d2_tweedie_score&quot;</span><span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;D^2 score is not well-defined with less than two samples.&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">UndefinedMetricWarning</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">)</span>
+        <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">sample_weight</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">TweedieDistribution</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="n">power</span><span class="p">)</span>
+
+    <span class="n">dev</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">unit_deviance</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">numerator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+
+    <span class="n">y_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+    <span class="n">dev</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">unit_deviance</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_avg</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Erik Ingwersen
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/tabs.js"></script>
+    </body>
+</html>

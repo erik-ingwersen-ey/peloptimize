@@ -1,0 +1,2040 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.09.29"/><title>Index - Peloptimize documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Peloptimize  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#W"><strong>W</strong></a> | <a href="#X"><strong>X</strong></a></div>
+</section>
+<section id="_" class="genindex-section">
+  <h2>_</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.FeatureBagging.__getitem__">__getitem__() (pelopt.utils.model_module.FeatureBagging method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.HTML.__html__">__html__() (pelopt.utils.model_module.HTML method)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.__init__">__init__() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.__init__">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.FeatureBagging.__iter__">__iter__() (pelopt.utils.model_module.FeatureBagging method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.FeatureBagging.__len__">__len__() (pelopt.utils.model_module.FeatureBagging method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.ABOD._decision_function_default">_decision_function_default() (pelopt.utils.model_module.ABOD method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.ABOD._decision_function_fast">_decision_function_fast() (pelopt.utils.model_module.ABOD method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.ABOD._fit_default">_fit_default() (pelopt.utils.model_module.ABOD method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.ABOD._fit_fast">_fit_fast() (pelopt.utils.model_module.ABOD method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.KNN._get_dist_by_method">_get_dist_by_method() (pelopt.utils.model_module.KNN method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.FeatureBagging._make_estimator">_make_estimator() (pelopt.utils.model_module.FeatureBagging method)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path._raw_open">_raw_open() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path._raw_open">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.CBLOF._validate_estimator">_validate_estimator() (pelopt.utils.model_module.CBLOF method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.FeatureBagging._validate_estimator">(pelopt.utils.model_module.FeatureBagging method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.ABOD">ABOD (class in pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.absolute">absolute() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.absolute">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.AbstractStep">AbstractStep (class in pelopt.utils.pulp_solver)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.operations.add_plant_new_keys">add_plant_new_keys() (in module pelopt.utils.operations)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.solver_operations.adjust_real_cost">adjust_real_cost() (pelopt.utils.constraints.solver_operations static method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.adjust_real_cost">(pelopt.utils.outputs.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.adjust_real_cost">(pelopt.utils.plant_module.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.adjust_real_cost">(pelopt.utils.solver_operations.solver_operations static method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.apply_model">apply_model() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.outputs.apply_normalization">apply_normalization() (in module pelopt.utils.outputs)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.apply_normalization">(pelopt.utils.pulp_solver.PulpSolver static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.StepsValidator.apply_steps">apply_steps() (pelopt.utils.pulp_solver.StepsValidator method)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.astimezone">astimezone() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.astimezone">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.astimezone">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.astimezone">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.operations.build_new_plant_map">build_new_plant_map() (in module pelopt.utils.operations)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.buscaIDVariavel">buscaIDVariavel() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.buscaIDVariavel">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.buscaIDVariavel2">buscaIDVariavel2() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.buscaIDVariavel2">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.canonicalize_name">canonicalize_name() (in module pelopt.helpers.fileutils)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.CBLOF">CBLOF (class in pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.dataprep.datatools.check_missing">check_missing() (in module pelopt.dataprep.datatools)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.usina.preprocess.check_missing">(in module pelopt.usina.preprocess)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.checkdf">checkdf() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.checkdf">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.chmod">chmod() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.chmod">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.cnxn">cnxn (pelopt.usina.preprocess.sqlModule property)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.cnxn">(pelopt.utils.sql_module.sqlModule property)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.combine">combine() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.combine">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.combine">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.combine">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.sql_module.completarTabela">completarTabela() (in module pelopt.utils.sql_module)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.usina.preprocess.sqlModule.completarTabela">(pelopt.usina.preprocess.sqlModule method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.completarTabela">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.contextmanager">contextmanager() (in module pelopt.helpers.fileutils)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.operations.continue_regex">continue_regex() (in module pelopt.utils.operations)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.create_lp_file">create_lp_file() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess_utils.create_plant_production_bands">create_plant_production_bands() (in module pelopt.usina.preprocess_utils)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.ctime">ctime() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.ctime">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.ctime">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.ctime">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.cursor">cursor (pelopt.usina.preprocess.sqlModule property)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.cursor">(pelopt.utils.sql_module.sqlModule property)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.cwd">cwd() (pelopt.helpers.fileutils.Path class method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.cwd">(pelopt.utils.model_module.Path class method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.data_quality">data_quality() (in module pelopt.utils.model_module)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.usina.preprocess.sqlModule.data_quality">(pelopt.usina.preprocess.sqlModule method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.data_quality">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.SqlCredentials.database">database (pelopt.utils.sql_module.SqlCredentials attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.date">date() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.date">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.date">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.date">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime">datetime (class in pelopt.config)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime">(class in pelopt.dataprep.datatools)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime">(class in pelopt.usina.preprocess)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime">(class in pelopt.utils.sql_module)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.timedelta.days">days (pelopt.utils.sql_module.timedelta attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.dbInfo">dbInfo() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.dbInfo">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.ABOD.decision_function">decision_function() (pelopt.utils.model_module.ABOD method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.CBLOF.decision_function">(pelopt.utils.model_module.CBLOF method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.FeatureBagging.decision_function">(pelopt.utils.model_module.FeatureBagging method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.HBOS.decision_function">(pelopt.utils.model_module.HBOS method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.IForest.decision_function">(pelopt.utils.model_module.IForest method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.KNN.decision_function">(pelopt.utils.model_module.KNN method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.LOF.decision_function">(pelopt.utils.model_module.LOF method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.limits.define_bentonita_limit">define_bentonita_limit() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.limits.define_constant_limits">define_constant_limits() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.limits.define_limit_by_normalization">define_limit_by_normalization() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.limits.define_limit_by_quantile">define_limit_by_quantile() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.limits.define_limit_by_rolling_mean">define_limit_by_rolling_mean() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.define_operator_term">define_operator_term() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.define_ordinary_constraints">define_ordinary_constraints() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.solver_operations.define_range_constraints">define_range_constraints() (pelopt.utils.constraints.solver_operations static method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.define_range_constraints">(pelopt.utils.outputs.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.define_range_constraints">(pelopt.utils.plant_module.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.define_range_constraints">(pelopt.utils.solver_operations.solver_operations static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.constraints.define_range_terms">define_range_terms() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.define_term_limit">define_term_limit() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.limits.define_work_dataset">define_work_dataset() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.disco">disco() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.disco">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.SqlCredentials.driver">driver (pelopt.utils.sql_module.SqlCredentials attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.drop_duplicate_tags">drop_duplicate_tags() (in module pelopt.usina.preprocess)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.usina.preprocess_utils.drop_duplicate_tags">(in module pelopt.usina.preprocess_utils)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.dst">dst() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.dst">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.dst">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.dst">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.IForest.estimators_">estimators_ (pelopt.utils.model_module.IForest property)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.IForest.estimators_samples_">estimators_samples_ (pelopt.utils.model_module.IForest property)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.AbstractStep.execute">execute() (pelopt.utils.pulp_solver.AbstractStep method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.pulp_solver.RangeValidation.execute">(pelopt.utils.pulp_solver.RangeValidation method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.exists">exists() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.exists">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.expanduser">expanduser() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.expanduser">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.export_results">export_results() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.StepsValidator.exportValidation">exportValidation() (pelopt.utils.pulp_solver.StepsValidator method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.IForest.feature_importances_">feature_importances_ (pelopt.utils.model_module.IForest property)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.FeatureBagging">FeatureBagging (class in pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.operations.filter_list">filter_list() (in module pelopt.utils.operations)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.ABOD.fit">fit() (pelopt.utils.model_module.ABOD method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.CBLOF.fit">(pelopt.utils.model_module.CBLOF method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.FeatureBagging.fit">(pelopt.utils.model_module.FeatureBagging method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.HBOS.fit">(pelopt.utils.model_module.HBOS method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.IForest.fit">(pelopt.utils.model_module.IForest method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.KNN.fit">(pelopt.utils.model_module.KNN method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.LOF.fit">(pelopt.utils.model_module.LOF method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.fix_disk_rotations">fix_disk_rotations() (in module pelopt.usina.preprocess)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.usina.preprocess_utils.fix_disk_rotations">(in module pelopt.usina.preprocess_utils)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.fix_vacuum_pressure_columns">fix_vacuum_pressure_columns() (in module pelopt.usina.preprocess)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.usina.preprocess_utils.fix_vacuum_pressure_columns">(in module pelopt.usina.preprocess_utils)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.fold">fold (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.fold">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.fold">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.fold">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.format_key">format_key() (in module pelopt.utils.model_module)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.format_key">(in module pelopt.utils.sql_module)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.sqlModule.format_key">(pelopt.usina.preprocess.sqlModule method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.format_key">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.format_value">format_value() (in module pelopt.utils.model_module)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.format_value">(in module pelopt.utils.sql_module)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.sqlModule.format_value">(pelopt.usina.preprocess.sqlModule method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.format_value">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.fromisoformat">fromisoformat() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.fromisoformat">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.fromisoformat">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.fromisoformat">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.fromtimestamp">fromtimestamp() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.fromtimestamp">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.fromtimestamp">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.fromtimestamp">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.geraSQL1">geraSQL1() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.geraSQL1">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.geraSQL2">geraSQL2() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.geraSQL2">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.geraSQL3">geraSQL3() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.geraSQL3">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.geraSQL_pisystem">geraSQL_pisystem() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.geraSQL_pisystem">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.calc_tags.get_calculated_tags">get_calculated_tags() (in module pelopt.usina.calc_tags)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.usina.preprocess.get_calculated_tags">(in module pelopt.usina.preprocess)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.get_dict_results">get_dict_results() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.dataprep.datatools.get_nulls_zeros">get_nulls_zeros() (in module pelopt.dataprep.datatools)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.get_probs">get_probs() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.get_range_results">get_range_results() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.get_solver_option">get_solver_option() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.get_variable_optimal_result">get_variable_optimal_result() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.get_variables">get_variables() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.AbstractStep.getArgs">getArgs() (pelopt.utils.pulp_solver.AbstractStep method)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getDateLabs">getDateLabs() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getDateLabs">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.AbstractStep.getDfDebug">getDfDebug() (pelopt.utils.pulp_solver.AbstractStep method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.pulp_solver.StepsValidator.getDfDebug">(pelopt.utils.pulp_solver.StepsValidator method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getFVarMaxDate">getFVarMaxDate() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getFVarMaxDate">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getFVarParam">getFVarParam() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getFVarParam">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getFVarReport">getFVarReport() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getFVarReport">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getIDUsinaModelo">getIDUsinaModelo() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getIDUsinaModelo">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getIDVariavel">getIDVariavel() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getIDVariavel">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getLabAllDate">getLabAllDate() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getLabAllDate">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getLabData">getLabData() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getLabData">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getLabData_pisystem">getLabData_pisystem() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getLabData_pisystem">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getLabDataSL">getLabDataSL() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getLabDataSL">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getLabMaxDate">getLabMaxDate() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getLabMaxDate">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getLastValueTAGs">getLastValueTAGs() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getLastValueTAGs">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getLastValueTAGs_v2">getLastValueTAGs_v2() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getLastValueTAGs_v2">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getMinCargaDate">getMinCargaDate() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getMinCargaDate">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getMinPredDate">getMinPredDate() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getMinPredDate">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.getSeq">getSeq() (in module pelopt.utils.sql_module)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getSQLDates">getSQLDates() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getSQLDates">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.StepsValidator.getSteps">getSteps() (pelopt.utils.pulp_solver.StepsValidator method)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.getTAGsDelay">getTAGsDelay() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.getTAGsDelay">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.AbstractStep.getTestName">getTestName() (pelopt.utils.pulp_solver.AbstractStep method)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.glob">glob() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.glob">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.group">group() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.group">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.HBOS">HBOS (class in pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.hide_toggle">hide_toggle() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.home">home() (pelopt.helpers.fileutils.Path class method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.home">(pelopt.utils.model_module.Path class method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.config.datetime.hour">hour (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.hour">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.hour">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.hour">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.HTML">HTML (class in pelopt.utils.model_module)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.IForest">IForest (class in pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.is_block_device">is_block_device() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.is_block_device">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.is_char_device">is_char_device() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.is_char_device">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.is_dir">is_dir() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.is_dir">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.is_dir_writable">is_dir_writable() (in module pelopt.helpers.fileutils)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.is_fifo">is_fifo() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.is_fifo">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.is_file">is_file() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.is_file">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.is_mount">is_mount() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.is_mount">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.is_socket">is_socket() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.is_socket">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.is_symlink">is_symlink() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.is_symlink">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.isoformat">isoformat() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.isoformat">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.isoformat">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.isoformat">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.iterdir">iterdir() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.iterdir">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="K" class="genindex-section">
+  <h2>K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.KFold">KFold (class in pelopt.utils.model_module)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.kfold_validation">kfold_validation() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.KNN">KNN (class in pelopt.utils.model_module)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.lchmod">lchmod() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.lchmod">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.limits.limits_by_minmax">limits_by_minmax() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.limits.limits_by_norm">limits_by_norm() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.limits.limits_by_quantile">limits_by_quantile() (in module pelopt.utils.limits)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.limits.limits_by_rolling_mean">limits_by_rolling_mean() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.load_df">load_df() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.LOF">LOF (class in pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.lstat">lstat() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.lstat">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.operations.make_maps">make_maps() (in module pelopt.utils.operations)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.max">max (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.max">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.max">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.max">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.timedelta.max">(pelopt.utils.sql_module.timedelta attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.IForest.max_samples_">max_samples_ (pelopt.utils.model_module.IForest property)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.mean_squared_error">mean_squared_error() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.measure_new_coef">measure_new_coef() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.microsecond">microsecond (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.microsecond">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.microsecond">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.microsecond">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.timedelta.microseconds">microseconds (pelopt.utils.sql_module.timedelta attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.min">min (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.min">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.min">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.min">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.timedelta.min">(pelopt.utils.sql_module.timedelta attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.minute">minute (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.minute">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.minute">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.minute">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.miss_test">miss_test() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.mkdir">mkdir() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.mkdir">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="reference.html#module-pelopt">pelopt</a>
+</li>
+          <li><a href="index.html#module-pelopt.cluster">pelopt.cluster</a>
+</li>
+          <li><a href="index.html#module-pelopt.cluster.checkup">pelopt.cluster.checkup</a>
+</li>
+          <li><a href="index.html#module-pelopt.cluster.install_dependencies">pelopt.cluster.install_dependencies</a>
+</li>
+          <li><a href="index.html#module-pelopt.config">pelopt.config</a>
+</li>
+          <li><a href="index.html#module-pelopt.constants">pelopt.constants</a>
+</li>
+          <li><a href="index.html#module-pelopt.constants.depara_pisystem">pelopt.constants.depara_pisystem</a>
+</li>
+          <li><a href="index.html#module-pelopt.dataprep">pelopt.dataprep</a>
+</li>
+          <li><a href="index.html#module-pelopt.dataprep.datatools">pelopt.dataprep.datatools</a>
+</li>
+          <li><a href="index.html#module-pelopt.helpers">pelopt.helpers</a>
+</li>
+          <li><a href="index.html#module-pelopt.helpers.fileutils">pelopt.helpers.fileutils</a>
+</li>
+          <li><a href="index.html#module-pelopt.io">pelopt.io</a>
+</li>
+          <li><a href="index.html#module-pelopt.tags">pelopt.tags</a>
+</li>
+          <li><a href="index.html#module-pelopt.usina">pelopt.usina</a>
+</li>
+          <li><a href="index.html#module-pelopt.usina.calc_tags">pelopt.usina.calc_tags</a>
+</li>
+          <li><a href="index.html#module-pelopt.usina.preprocess">pelopt.usina.preprocess</a>
+</li>
+          <li><a href="index.html#module-pelopt.usina.preprocess_utils">pelopt.usina.preprocess_utils</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils">pelopt.utils</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.constraints">pelopt.utils.constraints</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.limits">pelopt.utils.limits</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.logging_config">pelopt.utils.logging_config</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.model_module">pelopt.utils.model_module</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.operations">pelopt.utils.operations</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.outputs">pelopt.utils.outputs</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.plant_module">pelopt.utils.plant_module</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.predictive_module">pelopt.utils.predictive_module</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.pulp_solver">pelopt.utils.pulp_solver</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.solver_operations">pelopt.utils.solver_operations</a>
+</li>
+          <li><a href="index.html#module-pelopt.utils.sql_module">pelopt.utils.sql_module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.module_name">module_name() (in module pelopt.helpers.fileutils)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.multi_model_outlier_classification">multi_model_outlier_classification() (in module pelopt.utils.model_module)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.LOF.n_neighbors_">n_neighbors_ (pelopt.utils.model_module.LOF property)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.normalize_feature">normalize_feature() (in module pelopt.utils.constraints)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.limits.normalize_feature">(in module pelopt.utils.limits)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.operations.normalize_feature">(in module pelopt.utils.operations)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.relativedelta.normalized">normalized() (pelopt.config.relativedelta method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.relativedelta.normalized">(pelopt.dataprep.datatools.relativedelta method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.config.datetime.now">now() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.now">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.now">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.now">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.open">open() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.open">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.owner">owner() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.owner">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.param_combination">param_combination() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.params_to_str">params_to_str() (in module pelopt.utils.model_module)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.usina.preprocess.sqlModule.params_to_str">(pelopt.usina.preprocess.sqlModule method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.params_to_str">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.outputs.parse_coefficients">parse_coefficients() (in module pelopt.utils.outputs)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.parse_coeficients">parse_coeficients() (pelopt.utils.pulp_solver.PulpSolver static method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.parse_complex_constraints">parse_complex_constraints() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.parse_constraints">parse_constraints() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.limits.parse_limits">parse_limits() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.parse_range_complex_constraints">parse_range_complex_constraints() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.parse_type_complex_terms">parse_type_complex_terms() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.outputs.parse_variables_name">parse_variables_name() (in module pelopt.utils.outputs)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.parse_variables_name">(pelopt.utils.pulp_solver.PulpSolver static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path">Path (class in pelopt.helpers.fileutils)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path">(class in pelopt.utils.model_module)</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt
+
+        <ul>
+          <li><a href="reference.html#module-pelopt">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.cluster
+
+        <ul>
+          <li><a href="index.html#module-pelopt.cluster">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.cluster.checkup
+
+        <ul>
+          <li><a href="index.html#module-pelopt.cluster.checkup">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.cluster.install_dependencies
+
+        <ul>
+          <li><a href="index.html#module-pelopt.cluster.install_dependencies">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.config
+
+        <ul>
+          <li><a href="index.html#module-pelopt.config">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.constants
+
+        <ul>
+          <li><a href="index.html#module-pelopt.constants">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.constants.depara_pisystem
+
+        <ul>
+          <li><a href="index.html#module-pelopt.constants.depara_pisystem">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.dataprep
+
+        <ul>
+          <li><a href="index.html#module-pelopt.dataprep">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.dataprep.datatools
+
+        <ul>
+          <li><a href="index.html#module-pelopt.dataprep.datatools">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.helpers
+
+        <ul>
+          <li><a href="index.html#module-pelopt.helpers">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.helpers.fileutils
+
+        <ul>
+          <li><a href="index.html#module-pelopt.helpers.fileutils">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.io
+
+        <ul>
+          <li><a href="index.html#module-pelopt.io">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    pelopt.tags
+
+        <ul>
+          <li><a href="index.html#module-pelopt.tags">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.usina
+
+        <ul>
+          <li><a href="index.html#module-pelopt.usina">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.usina.calc_tags
+
+        <ul>
+          <li><a href="index.html#module-pelopt.usina.calc_tags">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.usina.preprocess
+
+        <ul>
+          <li><a href="index.html#module-pelopt.usina.preprocess">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.usina.preprocess_utils
+
+        <ul>
+          <li><a href="index.html#module-pelopt.usina.preprocess_utils">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.constraints
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.constraints">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.limits
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.limits">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.logging_config
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.logging_config">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.model_module
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.model_module">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.operations
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.operations">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.outputs
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.outputs">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.plant_module
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.plant_module">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.predictive_module
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.predictive_module">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.pulp_solver
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.pulp_solver">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.solver_operations
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.solver_operations">module</a>
+</li>
+        </ul></li>
+        <li>
+    pelopt.utils.sql_module
+
+        <ul>
+          <li><a href="index.html#module-pelopt.utils.sql_module">module</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.plot_charts">plot_charts() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.sql_module.SqlCredentials.port">port (pelopt.utils.sql_module.SqlCredentials attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.sql_module.SqlCredentials.prefix">prefix (pelopt.utils.sql_module.SqlCredentials attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.preprocess_data">preprocess_data() (in module pelopt.usina.preprocess)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.sql_module.SqlCredentials.pswd">pswd (pelopt.utils.sql_module.SqlCredentials property)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver">PulpSolver (class in pelopt.utils.pulp_solver)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.r2_score">r2_score() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.RangeValidation">RangeValidation (class in pelopt.utils.pulp_solver)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.read_bytes">read_bytes() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.read_bytes">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.constraints.read_constraints">read_constraints() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.io.read_json">read_json() (in module pelopt.io)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.constraints.read_json">(in module pelopt.utils.constraints)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.operations.read_json">(in module pelopt.utils.operations)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.outputs.read_json">(in module pelopt.utils.outputs)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.limits.read_limits">read_limits() (in module pelopt.utils.limits)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.read_text">read_text() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.read_text">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.operations.read_text_file">read_text_file() (in module pelopt.utils.operations)</a>
+</li>
+        <li><a href="index.html#pelopt.config.relativedelta">relativedelta (class in pelopt.config)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.relativedelta">(class in pelopt.dataprep.datatools)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.rename">rename() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.rename">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.replace">replace() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.replace">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.helpers.fileutils.Path.replace">(pelopt.helpers.fileutils.Path method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.replace">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.model_module.Path.replace">(pelopt.utils.model_module.Path method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.replace">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.operations.replace_string_from_file">replace_string_from_file() (in module pelopt.utils.operations)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.replace_string_from_file">(in module pelopt.utils.outputs)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.replace_string_from_file">(in module pelopt.utils.solver_operations)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.config.datetime.resolution">resolution (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.resolution">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.resolution">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.resolution">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.timedelta.resolution">(pelopt.utils.sql_module.timedelta attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.resolve">resolve() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.resolve">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.predictive_module.retrieve_best_model">retrieve_best_model() (in module pelopt.utils.predictive_module)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.solver_operations.retrieve_best_model">(in module pelopt.utils.solver_operations)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.limits.retrieve_dataset">retrieve_dataset() (in module pelopt.utils.limits)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.operations.retrieve_dataset">(in module pelopt.utils.operations)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.operations.retrieve_from_map">retrieve_from_map() (in module pelopt.utils.operations)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.retrieve_from_map">(in module pelopt.utils.outputs)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.constraints.solver_operations.retrieve_model_coeficients">retrieve_model_coeficients() (pelopt.utils.constraints.solver_operations method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.retrieve_model_coeficients">(pelopt.utils.outputs.solver_operations method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.retrieve_model_coeficients">(pelopt.utils.plant_module.solver_operations method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.retrieve_model_coeficients">(pelopt.utils.solver_operations.solver_operations method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.rglob">rglob() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.rglob">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.model_module.ridge_imprime_coef">ridge_imprime_coef() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.rmdir">rmdir() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.rmdir">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.safe_rmtree">safe_rmtree() (in module pelopt.helpers.fileutils)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.salvaPred">salvaPred() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.salvaPred">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.salvaTarget">salvaTarget() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.salvaTarget">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.salvaUltData">salvaUltData() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.salvaUltData">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.samefile">samefile() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.samefile">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.io.save_json">save_json() (in module pelopt.io)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.outputs.save_new_format">save_new_format() (in module pelopt.utils.outputs)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.constraints.solver_operations.save_new_format">(pelopt.utils.constraints.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.save_new_format">(pelopt.utils.outputs.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.save_new_format">(pelopt.utils.plant_module.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.save_new_format">(pelopt.utils.solver_operations.solver_operations static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.outputs.save_results">save_results() (in module pelopt.utils.outputs)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.solver_operations.save_solver_results">save_solver_results() (pelopt.utils.constraints.solver_operations static method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.save_solver_results">(pelopt.utils.outputs.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.save_solver_results">(pelopt.utils.plant_module.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.save_solver_results">(pelopt.utils.solver_operations.solver_operations static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.save_test">save_test() (in module pelopt.utils.pulp_solver)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.solver_operations.scale_optimization_tags">scale_optimization_tags() (pelopt.utils.constraints.solver_operations static method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.scale_optimization_tags">(pelopt.utils.outputs.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.scale_optimization_tags">(pelopt.utils.plant_module.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.scale_optimization_tags">(pelopt.utils.solver_operations.solver_operations static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.operations.scaling_target_values">scaling_target_values() (in module pelopt.utils.operations)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.config.datetime.second">second (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.second">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.second">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.second">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.timedelta.seconds">seconds (pelopt.utils.sql_module.timedelta attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.set_solver_option">set_solver_option() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.predictive_module.show_best_result">show_best_result() (in module pelopt.utils.predictive_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.model_module.show_coef">show_coef() (in module pelopt.utils.model_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.PulpSolver.solve_range">solve_range() (pelopt.utils.pulp_solver.PulpSolver method)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.solver_operations">solver_operations (class in pelopt.utils.constraints)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations">(class in pelopt.utils.outputs)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations">(class in pelopt.utils.plant_module)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations">(class in pelopt.utils.solver_operations)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.SqlCredentials">SqlCredentials (class in pelopt.utils.sql_module)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule">sqlModule (class in pelopt.usina.preprocess)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule">(class in pelopt.utils.sql_module)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.SqlCredentials.sqlserver">sqlserver (pelopt.utils.sql_module.SqlCredentials attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.stat">stat() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.stat">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.pulp_solver.StepsValidator">StepsValidator (class in pelopt.utils.pulp_solver)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.operations.string_in_list">string_in_list() (in module pelopt.utils.operations)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.strptime">strptime() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.strptime">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.strptime">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.strptime">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.symlink_to">symlink_to() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.symlink_to">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.tags.tag_pims_to_adls">tag_pims_to_adls() (in module pelopt.tags)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.tagPIMStoDataLake">tagPIMStoDataLake() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.tagPIMStoDataLake">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.tagPIMStoDataLake_v1">tagPIMStoDataLake_v1() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.tagPIMStoDataLake_v1">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.helpers.fileutils.temporary_directory">temporary_directory() (in module pelopt.helpers.fileutils)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.sql_module.text">text() (in module pelopt.utils.sql_module)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.time">time() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.time">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.time">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.time">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.timedelta">timedelta (class in pelopt.utils.sql_module)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.timestamp">timestamp() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.timestamp">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.timestamp">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.timestamp">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.timetuple">timetuple() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.timetuple">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.timetuple">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.timetuple">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.config.datetime.timetz">timetz() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.timetz">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.timetz">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.timetz">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.timedelta.total_seconds">total_seconds() (pelopt.utils.sql_module.timedelta method)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.touch">touch() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.touch">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.predictive_module.tratando_dados">tratando_dados() (in module pelopt.utils.predictive_module)</a>
+</li>
+        <li><a href="index.html#pelopt.usina.preprocess.sqlModule.trataTabela">trataTabela() (pelopt.usina.preprocess.sqlModule method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.sql_module.sqlModule.trataTabela">(pelopt.utils.sql_module.sqlModule method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.TZ_SAO_PAULO">TZ_SAO_PAULO (in module pelopt.config)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.tzinfo">tzinfo (pelopt.config.datetime attribute)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.tzinfo">(pelopt.dataprep.datatools.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.tzinfo">(pelopt.usina.preprocess.datetime attribute)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.tzinfo">(pelopt.utils.sql_module.datetime attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.tzname">tzname() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.tzname">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.tzname">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.tzname">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.unlink">unlink() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.unlink">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.constraints.unnormalize_feature">unnormalize_feature() (in module pelopt.utils.constraints)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.operations.unnormalize_feature">(in module pelopt.utils.operations)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.outputs.unnormalize_feature">(in module pelopt.utils.outputs)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.unnormalize_feature">(in module pelopt.utils.plant_module)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.unnormalize_feature">(in module pelopt.utils.solver_operations)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.sql_module.SqlCredentials.user">user (pelopt.utils.sql_module.SqlCredentials attribute)</a>
+</li>
+        <li><a href="index.html#pelopt.config.datetime.utcfromtimestamp">utcfromtimestamp() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.utcfromtimestamp">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.utcfromtimestamp">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.utcfromtimestamp">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.config.datetime.utcnow">utcnow() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.utcnow">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.utcnow">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.utcnow">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.utcoffset">utcoffset() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.utcoffset">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.utcoffset">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.utcoffset">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.config.datetime.utctimetuple">utctimetuple() (pelopt.config.datetime method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.datetime.utctimetuple">(pelopt.dataprep.datatools.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.usina.preprocess.datetime.utctimetuple">(pelopt.usina.preprocess.datetime method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.sql_module.datetime.utctimetuple">(pelopt.utils.sql_module.datetime method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.config.relativedelta.weeks">weeks (pelopt.config.relativedelta property)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.dataprep.datatools.relativedelta.weeks">(pelopt.dataprep.datatools.relativedelta property)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.plant_module.write_antracito">write_antracito() (in module pelopt.utils.plant_module)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.write_bytes">write_bytes() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.write_bytes">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.constraints.write_complex_constraints">write_complex_constraints() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.solver_operations.write_constraint">write_constraint() (pelopt.utils.constraints.solver_operations static method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.write_constraint">(pelopt.utils.outputs.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.write_constraint">(pelopt.utils.plant_module.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.write_constraint">(pelopt.utils.solver_operations.solver_operations static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.constraints.solver_operations.write_descriptive_contraints">write_descriptive_contraints() (pelopt.utils.constraints.solver_operations static method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.write_descriptive_contraints">(pelopt.utils.outputs.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.write_descriptive_contraints">(pelopt.utils.plant_module.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.write_descriptive_contraints">(pelopt.utils.solver_operations.solver_operations static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.plant_module.write_disc_route_func">write_disc_route_func() (in module pelopt.utils.plant_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.plant_module.write_equality_potence">write_equality_potence() (in module pelopt.utils.plant_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.write_equality_targets">write_equality_targets() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.write_feature_constraints">write_feature_constraints() (in module pelopt.utils.constraints)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.constraints.write_features_limits">write_features_limits() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.predictive_module.write_header">write_header() (in module pelopt.utils.predictive_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.outputs.write_objective_function_coef">write_objective_function_coef() (in module pelopt.utils.outputs)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.plant_module.write_rate_production_press">write_rate_production_press() (in module pelopt.utils.plant_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.predictive_module.write_row">write_row() (in module pelopt.utils.predictive_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.write_simple_constraints">write_simple_constraints() (in module pelopt.utils.constraints)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.constraints.solver_operations.write_simple_constraints">(pelopt.utils.constraints.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.outputs.solver_operations.write_simple_constraints">(pelopt.utils.outputs.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.plant_module.solver_operations.write_simple_constraints">(pelopt.utils.plant_module.solver_operations static method)</a>
+</li>
+          <li><a href="index.html#pelopt.utils.solver_operations.solver_operations.write_simple_constraints">(pelopt.utils.solver_operations.solver_operations static method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.constraints.write_simple_range_terms">write_simple_range_terms() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.write_targets_limits">write_targets_limits() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.constraints.write_targets_limits_VG">write_targets_limits_VG() (in module pelopt.utils.constraints)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.plant_module.write_taxa_alimentacao_bv">write_taxa_alimentacao_bv() (in module pelopt.utils.plant_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.plant_module.write_taxa_alimentacao_filtros">write_taxa_alimentacao_filtros() (in module pelopt.utils.plant_module)</a>
+</li>
+        <li><a href="index.html#pelopt.utils.plant_module.write_temp_qugq_gt">write_temp_qugq_gt() (in module pelopt.utils.plant_module)</a>
+</li>
+        <li><a href="index.html#pelopt.helpers.fileutils.Path.write_text">write_text() (pelopt.helpers.fileutils.Path method)</a>
+
+        <ul>
+          <li><a href="index.html#pelopt.utils.model_module.Path.write_text">(pelopt.utils.model_module.Path method)</a>
+</li>
+        </ul></li>
+        <li><a href="index.html#pelopt.utils.constraints.write_variable_constraints">write_variable_constraints() (in module pelopt.utils.constraints)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="X" class="genindex-section">
+  <h2>X</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="index.html#pelopt.utils.model_module.xgb_imprime_coef">xgb_imprime_coef() (in module pelopt.utils.model_module)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Erik Ingwersen
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/tabs.js"></script>
+    </body>
+</html>

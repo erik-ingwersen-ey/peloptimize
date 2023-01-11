@@ -1,0 +1,627 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.09.29"/>
+        <title>pyod.models.feature_bagging - Peloptimize documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Peloptimize  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <h1>Source code for pyod.models.feature_bagging</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Feature bagging detector</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Author: Yue Zhao &lt;zhaoy@cmu.edu&gt;</span>
+<span class="c1"># License: BSD 2 clause</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">numbers</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">clone</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_array</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">check_random_state</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="kn">import</span> <span class="n">check_is_fitted</span>
+
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">BaseDetector</span>
+<span class="kn">from</span> <span class="nn">.combination</span> <span class="kn">import</span> <span class="n">average</span><span class="p">,</span> <span class="n">maximization</span>
+<span class="kn">from</span> <span class="nn">.lof</span> <span class="kn">import</span> <span class="n">LOF</span>
+<span class="kn">from</span> <span class="nn">..utils.utility</span> <span class="kn">import</span> <span class="n">check_detector</span>
+<span class="kn">from</span> <span class="nn">..utils.utility</span> <span class="kn">import</span> <span class="n">check_parameter</span>
+<span class="kn">from</span> <span class="nn">..utils.utility</span> <span class="kn">import</span> <span class="n">generate_bagging_indices</span>
+
+<span class="n">MAX_INT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span><span class="o">.</span><span class="n">max</span>
+
+
+<span class="k">def</span> <span class="nf">_set_random_states</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets fixed random_state parameters for an estimator. Internal use only.</span>
+<span class="sd">    Modified from sklearn/base.py</span>
+
+<span class="sd">    Finds all parameters ending ``random_state`` and sets them to integers</span>
+<span class="sd">    derived from ``random_state``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    estimator : estimator supporting get/set_params</span>
+<span class="sd">        Estimator with potential randomness managed by random_state</span>
+<span class="sd">        parameters.</span>
+
+<span class="sd">    random_state : int, RandomState instance or None, optional (default=None)</span>
+<span class="sd">        If int, random_state is the seed used by the random number generator;</span>
+<span class="sd">        If RandomState instance, random_state is the random number generator;</span>
+<span class="sd">        If None, the random number generator is the RandomState instance used</span>
+<span class="sd">        by `np.random`.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This does not necessarily set *all* ``random_state`` attributes that</span>
+<span class="sd">    control an estimator&#39;s randomness, only those accessible through</span>
+<span class="sd">    ``estimator.get_params()``.  ``random_state``s not controlled include</span>
+<span class="sd">    those belonging to:</span>
+
+<span class="sd">        * cross-validation splitters</span>
+<span class="sd">        * ``scipy.stats`` rvs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">to_set</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">estimator</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;random_state&#39;</span> <span class="ow">or</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;__random_state&#39;</span><span class="p">):</span>
+            <span class="n">to_set</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">MAX_INT</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">to_set</span><span class="p">:</span>
+        <span class="n">estimator</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">to_set</span><span class="p">)</span>
+
+
+<span class="c1"># def _parallel_decision_function(estimators, estimators_features, X):</span>
+<span class="c1">#     n_samples = X.shape[0]</span>
+<span class="c1">#     scores = np.zeros((n_samples, len(estimators)))</span>
+<span class="c1">#</span>
+<span class="c1">#     for i, (estimator, features) in enumerate(</span>
+<span class="c1">#             zip(estimators, estimators_features)):</span>
+<span class="c1">#         if hasattr(estimator, &#39;decision_function&#39;):</span>
+<span class="c1">#             estimator_score = estimator.decision_function(</span>
+<span class="c1">#                 X[:, features])</span>
+<span class="c1">#             scores[:, i] = estimator_score</span>
+<span class="c1">#         else:</span>
+<span class="c1">#             raise NotImplementedError(</span>
+<span class="c1">#                 &#39;current base detector has no decision_function&#39;)</span>
+<span class="c1">#     return scores</span>
+
+
+<span class="c1"># TODO: should support parallelization at the model level</span>
+<span class="c1"># TODO: detector score combination through BFS should be implemented</span>
+<span class="c1"># See https://github.com/yzhao062/pyod/issues/59</span>
+<div class="viewcode-block" id="FeatureBagging"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.FeatureBagging">[docs]</a><span class="k">class</span> <span class="nc">FeatureBagging</span><span class="p">(</span><span class="n">BaseDetector</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; A feature bagging detector is a meta estimator that fits a number of</span>
+<span class="sd">    base detectors on various sub-samples of the dataset and use averaging</span>
+<span class="sd">    or other combination methods to improve the predictive accuracy and</span>
+<span class="sd">    control over-fitting.</span>
+
+<span class="sd">    The sub-sample size is always the same as the original input sample size</span>
+<span class="sd">    but the features are randomly sampled from half of the features to all</span>
+<span class="sd">    features.</span>
+
+<span class="sd">    By default, LOF is used as the base estimator. However, any estimator</span>
+<span class="sd">    could be used as the base estimator, such as kNN and ABOD.</span>
+
+<span class="sd">    Feature bagging first construct n subsamples by random selecting a subset</span>
+<span class="sd">    of features, which induces the diversity of base estimators.</span>
+
+<span class="sd">    Finally, the prediction score is generated by averaging/taking the maximum</span>
+<span class="sd">    of all base detectors. See :cite:`lazarevic2005feature` for details.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_estimator : object or None, optional (default=None)</span>
+<span class="sd">        The base estimator to fit on random subsets of the dataset.</span>
+<span class="sd">        If None, then the base estimator is a LOF detector.</span>
+
+<span class="sd">    n_estimators : int, optional (default=10)</span>
+<span class="sd">        The number of base estimators in the ensemble.</span>
+
+<span class="sd">    contamination : float in (0., 0.5), optional (default=0.1)</span>
+<span class="sd">        The amount of contamination of the data set,</span>
+<span class="sd">        i.e. the proportion of outliers in the data set. Used when fitting to</span>
+<span class="sd">        define the threshold on the decision function.</span>
+
+<span class="sd">    max_features : int or float, optional (default=1.0)</span>
+<span class="sd">        The number of features to draw from X to train each base estimator.</span>
+
+<span class="sd">        - If int, then draw `max_features` features.</span>
+<span class="sd">        - If float, then draw `max_features * X.shape[1]` features.</span>
+
+<span class="sd">    bootstrap_features : bool, optional (default=False)</span>
+<span class="sd">        Whether features are drawn with replacement.</span>
+
+<span class="sd">    check_detector : bool, optional (default=True)</span>
+<span class="sd">        If set to True, check whether the base estimator is consistent with</span>
+<span class="sd">        pyod standard.</span>
+
+<span class="sd">    check_estimator : bool, optional (default=False)</span>
+<span class="sd">        If set to True, check whether the base estimator is consistent with</span>
+<span class="sd">        sklearn standard.</span>
+
+<span class="sd">        .. deprecated:: 0.6.9</span>
+<span class="sd">          `check_estimator` will be removed in pyod 0.8.0.; it will be</span>
+<span class="sd">          replaced by `check_detector`.</span>
+
+<span class="sd">    n_jobs : optional (default=1)</span>
+<span class="sd">        The number of jobs to run in parallel for both `fit` and</span>
+<span class="sd">        `predict`. If -1, then the number of jobs is set to the</span>
+<span class="sd">        number of cores.</span>
+
+<span class="sd">    random_state : int, RandomState or None, optional (default=None)</span>
+<span class="sd">        If int, random_state is the seed used by the random</span>
+<span class="sd">        number generator; If RandomState instance, random_state is the random</span>
+<span class="sd">        number generator; If None, the random number generator is the</span>
+<span class="sd">        RandomState instance used by `np.random`.</span>
+
+<span class="sd">    combination : str, optional (default=&#39;average&#39;)</span>
+<span class="sd">        The method of combination:</span>
+
+<span class="sd">        - if &#39;average&#39;: take the average of all detectors</span>
+<span class="sd">        - if &#39;max&#39;: take the maximum scores of all detectors</span>
+
+<span class="sd">    verbose : int, optional (default=0)</span>
+<span class="sd">        Controls the verbosity of the building process.</span>
+
+<span class="sd">    estimator_params : dict, optional (default=None)</span>
+<span class="sd">        The list of attributes to use as parameters</span>
+<span class="sd">        when instantiating a new base estimator. If none are given,</span>
+<span class="sd">        default parameters are used.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    decision_scores_ : numpy array of shape (n_samples,)</span>
+<span class="sd">        The outlier scores of the training data.</span>
+<span class="sd">        The higher, the more abnormal. Outliers tend to have higher</span>
+<span class="sd">        scores. This value is available once the detector is</span>
+<span class="sd">        fitted.</span>
+
+<span class="sd">    threshold_ : float</span>
+<span class="sd">        The threshold is based on ``contamination``. It is the</span>
+<span class="sd">        ``n_samples * contamination`` most abnormal samples in</span>
+<span class="sd">        ``decision_scores_``. The threshold is calculated for generating</span>
+<span class="sd">        binary outlier labels.</span>
+
+<span class="sd">    labels_ : int, either 0 or 1</span>
+<span class="sd">        The binary labels of the training data. 0 stands for inliers</span>
+<span class="sd">        and 1 for outliers/anomalies. It is generated by applying</span>
+<span class="sd">        ``threshold_`` on ``decision_scores_``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">contamination</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                 <span class="n">max_features</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bootstrap_features</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">check_detector</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">check_estimator</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">combination</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">estimator_params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">FeatureBagging</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">contamination</span><span class="o">=</span><span class="n">contamination</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_estimator</span> <span class="o">=</span> <span class="n">base_estimator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="n">n_estimators</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">=</span> <span class="n">max_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bootstrap_features</span> <span class="o">=</span> <span class="n">bootstrap_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_detector</span> <span class="o">=</span> <span class="n">check_detector</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_estimator</span> <span class="o">=</span> <span class="n">check_estimator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="o">=</span> <span class="n">combination</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+        <span class="k">if</span> <span class="n">estimator_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">estimator_params</span> <span class="o">=</span> <span class="n">estimator_params</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">estimator_params</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="FeatureBagging.fit"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.FeatureBagging.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit detector. y is ignored in unsupervised methods.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : numpy array of shape (n_samples, n_features)</span>
+<span class="sd">            The input samples.</span>
+
+<span class="sd">        y : Ignored</span>
+<span class="sd">            Not used, present for API consistency by convention.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Fitted estimator.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">random_state</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_samples_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_n_classes</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># expect at least 2 features, does not make sense if only have</span>
+        <span class="c1"># 1 feature</span>
+        <span class="n">check_parameter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">include_left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">param_name</span><span class="o">=</span><span class="s1">&#39;n_features&#39;</span><span class="p">)</span>
+
+        <span class="c1"># check parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_estimator</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">LOF</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">))</span>
+
+        <span class="c1"># use at least half of the features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_features_</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">)</span>
+
+        <span class="c1"># Validate max_features</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span><span class="p">,</span> <span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_features_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_features</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># float</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_features_</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">)</span>
+
+        <span class="c1"># min_features and max_features could equal</span>
+        <span class="n">check_parameter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_features_</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_features_</span><span class="p">,</span>
+                        <span class="n">param_name</span><span class="o">=</span><span class="s1">&#39;max_features&#39;</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">,</span>
+                        <span class="n">include_left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_right</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">estimators_features_</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">n_more_estimators</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">n_more_estimators</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;n_estimators=</span><span class="si">%d</span><span class="s1"> must be larger or equal to &#39;</span>
+                             <span class="s1">&#39;len(estimators_)=</span><span class="si">%d</span><span class="s1"> when warm_start==True&#39;</span>
+                             <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)))</span>
+
+        <span class="n">seeds</span> <span class="o">=</span> <span class="n">random_state</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">MAX_INT</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_more_estimators</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seeds</span> <span class="o">=</span> <span class="n">seeds</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">):</span>
+            <span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seeds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># max_features is incremented by one since random</span>
+            <span class="c1"># function is [min_features, max_features)</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="n">generate_bagging_indices</span><span class="p">(</span><span class="n">random_state</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">bootstrap_features</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">min_features_</span><span class="p">,</span>
+                                                <span class="bp">self</span><span class="o">.</span><span class="n">max_features_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># initialize and append estimators</span>
+            <span class="n">estimator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_estimator</span><span class="p">(</span><span class="n">append</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                             <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+            <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">features</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">estimator</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">estimators_features_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+        <span class="c1"># decision score matrix from all estimators</span>
+        <span class="n">all_decision_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_decision_scores</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="o">==</span> <span class="s1">&#39;average&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">decision_scores_</span> <span class="o">=</span> <span class="n">average</span><span class="p">(</span><span class="n">all_decision_scores</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">decision_scores_</span> <span class="o">=</span> <span class="n">maximization</span><span class="p">(</span><span class="n">all_decision_scores</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_process_decision_scores</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="FeatureBagging.decision_function"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.FeatureBagging.decision_function">[docs]</a>    <span class="k">def</span> <span class="nf">decision_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict raw anomaly score of X using the fitted detector.</span>
+
+<span class="sd">        The anomaly score of an input sample is computed based on different</span>
+<span class="sd">        detector algorithms. For consistency, outliers are assigned with</span>
+<span class="sd">        larger anomaly scores.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : numpy array of shape (n_samples, n_features)</span>
+<span class="sd">            The training input samples. Sparse matrices are accepted only</span>
+<span class="sd">            if they are supported by the base estimator.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        anomaly_scores : numpy array of shape (n_samples,)</span>
+<span class="sd">            The anomaly score of the input samples.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;estimators_&#39;</span><span class="p">,</span> <span class="s1">&#39;estimators_features_&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;decision_scores_&#39;</span><span class="p">,</span> <span class="s1">&#39;threshold_&#39;</span><span class="p">,</span> <span class="s1">&#39;labels_&#39;</span><span class="p">])</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span> <span class="o">!=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Number of features of the model must &quot;</span>
+                             <span class="s2">&quot;match the input. Model n_features is </span><span class="si">{0}</span><span class="s2"> and &quot;</span>
+                             <span class="s2">&quot;input n_features is </span><span class="si">{1}</span><span class="s2">.&quot;</span>
+                             <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features_</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="c1"># Parallel loop</span>
+        <span class="c1"># n_jobs, n_estimators, starts = _partition_estimators(self.n_estimators,</span>
+        <span class="c1">#                                                      self.n_jobs)</span>
+        <span class="c1"># all_pred_scores = Parallel(n_jobs=n_jobs, verbose=self.verbose)(</span>
+        <span class="c1">#     delayed(_parallel_decision_function)(</span>
+        <span class="c1">#         self.estimators_[starts[i]:starts[i + 1]],</span>
+        <span class="c1">#         self.estimators_features_[starts[i]:starts[i + 1]],</span>
+        <span class="c1">#         X)</span>
+        <span class="c1">#     for i in range(n_jobs))</span>
+        <span class="c1">#</span>
+        <span class="c1"># # Reduce</span>
+        <span class="c1"># all_pred_scores = np.concatenate(all_pred_scores, axis=1)</span>
+        <span class="n">all_pred_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict_decision_scores</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">combination</span> <span class="o">==</span> <span class="s1">&#39;average&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="n">all_pred_scores</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">maximization</span><span class="p">(</span><span class="n">all_pred_scores</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_predict_decision_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">all_pred_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">):</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_features_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">all_pred_scores</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span>
+                <span class="n">X</span><span class="p">[:,</span> <span class="n">features</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">all_pred_scores</span>
+
+    <span class="k">def</span> <span class="nf">_get_decision_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">all_decision_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">n_samples_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">):</span>
+            <span class="n">all_decision_scores</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">decision_scores_</span>
+        <span class="k">return</span> <span class="n">all_decision_scores</span>
+
+<div class="viewcode-block" id="FeatureBagging._validate_estimator"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.FeatureBagging._validate_estimator">[docs]</a>    <span class="k">def</span> <span class="nf">_validate_estimator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check the estimator and the n_estimator attribute, set the</span>
+<span class="sd">        `base_estimator_` attribute.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">,</span> <span class="p">(</span><span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;n_estimators must be an integer, &quot;</span>
+                             <span class="s2">&quot;got </span><span class="si">{0}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;n_estimators must be greater than zero, &quot;</span>
+                             <span class="s2">&quot;got </span><span class="si">{0}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_estimators</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_estimator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">base_estimator_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_estimator</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">base_estimator_</span> <span class="o">=</span> <span class="n">default</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_estimator_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;base_estimator cannot be None&quot;</span><span class="p">)</span>
+
+        <span class="c1"># make sure estimator is consistent with sklearn</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_detector</span><span class="p">:</span>
+            <span class="n">check_detector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_estimator_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FeatureBagging._make_estimator"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.FeatureBagging._make_estimator">[docs]</a>    <span class="k">def</span> <span class="nf">_make_estimator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make and configure a copy of the `base_estimator_` attribute.</span>
+
+<span class="sd">        sklearn/base.py</span>
+
+<span class="sd">        Warning: This method should be used to properly instantiate new</span>
+<span class="sd">        sub-estimators.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># TODO: add a check for estimator_param</span>
+        <span class="n">estimator</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base_estimator_</span><span class="p">)</span>
+        <span class="n">estimator</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator_params</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">random_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_set_random_states</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">random_state</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">append</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">estimator</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">estimator</span></div>
+
+<div class="viewcode-block" id="FeatureBagging.__len__"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.FeatureBagging.__len__">[docs]</a>    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of estimators in the ensemble.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FeatureBagging.__getitem__"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.FeatureBagging.__getitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the index&#39;th estimator in the ensemble.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="FeatureBagging.__iter__"><a class="viewcode-back" href="../../../index.html#pelopt.utils.model_module.FeatureBagging.__iter__">[docs]</a>    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns iterator over estimators in the ensemble.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimators_</span><span class="p">)</span></div></div>
+</pre></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Erik Ingwersen
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/tabs.js"></script>
+    </body>
+</html>

@@ -9,7 +9,7 @@ import pyodbc
 import pytz
 
 import pulp
-pulp.solvers.PULP_CBC_CMD()
+
 
 # Recupera idPred da tabela FPred
 def getIDPredSeq():
@@ -758,8 +758,7 @@ def add_model_tags(datasets, df, qual, tags):
     except:
         raise Exception(
             str([x for x in tags if x not in df.columns])
-            + " Não encontradas no "
-            "dataset"
+            + " Não encontradas no dataset"
         )
 
     filtered_tags = tags

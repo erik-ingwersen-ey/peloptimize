@@ -37,7 +37,7 @@ def unnormalize_feature(scalers, feature, norm_value, operation="two feature"):
 def retrieve_dataset(feature, datasets):
     """
     Considering all datasets
-    Returns a the data where a column is present
+    Returns the data where a column is present
 
     """
     return list(

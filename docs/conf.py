@@ -49,20 +49,42 @@ master_doc = 'index'
 html_static_path = ['_static']
 
 extensions = [
-    'sphinx.ext.autosummary',
-    'sphinx.ext.doctest',
-    'sphinx.ext.intersphinx',
+    "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinx_click",
-    "myst_parser",
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode',
-    'numpydoc',
     "sphinx_inline_tabs",
+    'numpydoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.doctest',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.viewcode',
+    'sphinx_pyreverse',
+    'sphinx.ext.autosectionlabel',
+    'sphinx.ext.githubpages',
     img_ext,
 ]
-autodoc_typehints = "description"
+autodoc_typehints = "both"
+autodoc_typehints_format = "short"
+
+
+autodocgen_config = {
+    'modules': ['pelopt'],
+    'generated_source_dir': './source/',
+    # if module matches this then it and any of its submodules will be skipped
+    # 'skip_module_regex': 'supply.allocation_model.etl.validation',
+    # produce a text file containing a list of everything documented.
+    # you can use this in a test to notice when you've
+    # intentionally added/removed/changed a documented API
+    'write_documented_items_output_file': 'autodocgen_documented_items.txt',
+    'autodoc_options_decider': {
+        'pelopt': {'inherited-members': True},
+    },
+    'module_title_decider': lambda modulename: 'API Reference' if modulename
+                                                                  == 'pelopt'
+    else modulename,
+}
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -71,9 +93,9 @@ autodoc_typehints = "description"
 html_theme = "furo"
 # html_theme = "pydata_sphinx_theme"
 html_theme_options = {
-    "github_url": "https://github.com/ingwersen-erik/peloptimize",
-    "show_prev_next": False,
-    "navbar_end": ["search-field.html", "navbar-icon-links.html"],
+    # "github_url": "https://github.com/ingwersen-erik/peloptimize",
+    # "show_prev_next": True,
+    # "navbar_end": ["search-field.html", "navbar-icon-links.html"],
     "light_logo": "EY_logo_1.gif",
     "dark_logo": "EY_logo_1.gif",
 }
@@ -107,3 +129,4 @@ intersphinx_mapping = {
     'numpy': ('https://numpy.org/devdocs/', None),
     'sklearn': ('https://scikit-learn.org/stable/', None),
 }
+autosummary_generate = True
