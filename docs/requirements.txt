@@ -3,5 +3,5 @@ sphinx-click
 pydata-sphinx-theme
 sphinx-inline-tabs
 numpydoc==1.2.0
-myst_parser==0.17.0
+myst_parser==0.18.1
 sphinx==4.4.0
