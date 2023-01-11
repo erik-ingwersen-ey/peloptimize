@@ -2,7 +2,7 @@
 import sys
 import os
 from pathlib import Path
-from dotenv import load_dotenv, find_dotenv
+# from dotenv import load_dotenv, find_dotenv
 import importlib
 
 try:
@@ -12,7 +12,7 @@ except ImportError:
 else:
     img_ext = 'sphinx.ext.imgmath'
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 package_dir = os.environ.get('PACKAGE_DIRECTORY', None)
 if package_dir is None:
     project_name = "peloptimize"
