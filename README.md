@@ -35,8 +35,11 @@
 
 Criação de modelos de Machine Learning para predição de custos, alimentando
 um modelo de otimização de custos.
+
 [//]: # (Criação de modelos de Machine Learning para predição de custos relacionados ao)
+
 [//]: # (processo de pelotização da Vale S/A e otimização de custos através da aplicação)
+
 [//]: # (de um modelo de otimização baseado nos resultados dos algoritmos preditivos.)
 
 ----
