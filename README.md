@@ -42,6 +42,8 @@ um modelo de otimização de custos.
 
 [//]: # (de um modelo de otimização baseado nos resultados dos algoritmos preditivos.)
 
+Acesse a documentação do projeto em: [documentação](https://erik-ingwersen-ey.github.io/peloptimize/)
+
 ----
 
 ## Installation
