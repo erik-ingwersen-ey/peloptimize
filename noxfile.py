@@ -1,4 +1,26 @@
-"""Nox sessions."""
+"""
+Nox sessions.
+
+To use this script, you need to install `nox` and `nox-poetry` into your
+development environment. You can then run the sessions using the command:
+
+.. code-block:: bash
+
+    $ nox
+
+Sessions Available
+------------------
+- safety: scan dependencies for insecure packages.
+- mypy: type-check the PACKAGE.
+- tests: run the test suite.
+- coverage: check code coverage quickly with the default Python.
+- typeguard: check runtime type safety.
+- xdoctest: run examples in docstrings.
+- docs_build: invoke sphinx-build to build the HTML docs.
+- docs: build the documentation.
+
+"""
+
 import os
 import shlex
 import shutil
@@ -14,7 +36,7 @@ try:
     from nox_poetry import session
 except ImportError:
     message = f"""\
-    Nox failed to import the 'nox-poetry' package.
+    Nox failed to import the 'nox-poetry' PACKAGE.
 
     Please install it using the following command:
 
@@ -22,7 +44,7 @@ except ImportError:
     raise SystemExit(dedent(message)) from None
 
 
-package = "pelopt"
+PACKAGE = "pelopt"
 python_versions = ["3.10", "3.9", "3.8", "3.7"]
 nox.needs_version = ">= 2021.6.6"
 nox.options.sessions = (
@@ -36,20 +58,30 @@ nox.options.sessions = (
 )
 
 
-def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
+def activate_virtualenv_in_recommit_hooks(
+    session: Session  # pylint: disable=redefined-outer-name
+) -> None:
     """Activate virtualenv in hooks installed by pre-commit.
 
     This function patches git hooks installed by pre-commit to activate the
     session's virtual environment. This allows pre-commit to locate hooks in
     that environment when invoked from git.
 
-    Args:
-        session: The Session object.
+    Parameters
+    ----------
+    session : Session
+        The Session object.
     """
-    assert session.bin is not None  # noqa: S101
+    if not hasattr(session, "bin"):
+        raise AttributeError(
+            "`session` must be a nox-poetry Session object. "
+            "No `bin` attribute found."
+        )
+    if session.bin is None:
+        raise ValueError("`session.bin` is None. Cannot activate virtualenv.")
 
     # Only patch hooks containing a reference to this session's bindir. Support
-    # quoting rules for Python and bash, but strip the outermost quotes so we
+    # quoting rules for Python and bash, but strip the outermost quotes, so we
     # can detect paths within the bindir, like <bindir>/python.
     bindirs = [
         bindir[1:-1] if bindir[0] in "'\"" else bindir
@@ -82,15 +114,16 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
             """,
     }
 
-    hookdir = Path(".git") / "hooks"
+    hookdir = Path(".git").joinpath("hooks")
     if not hookdir.is_dir():
         return
 
     for hook in hookdir.iterdir():
-        if hook.name.endswith(".sample") or not hook.is_file():
-            continue
-
-        if not hook.read_bytes().startswith(b"#!"):
+        if (
+            hook.name.endswith(".sample")
+            or not hook.is_file()
+            or not hook.read_bytes().startswith(b"#!")
+        ):
             continue
 
         text = hook.read_text()
@@ -102,7 +135,6 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
             continue
 
         lines = text.splitlines()
-
         for executable, header in headers.items():
             if executable in lines[0].lower():
                 lines.insert(1, dedent(header))
@@ -111,8 +143,14 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
 
 
 @session(name="pre-commit", python=python_versions[0])
-def precommit(session: Session) -> None:
-    """Lint using pre-commit."""
+def precommit(session: Session) -> None:  # pylint: disable=redefined-outer-name
+    """Lint using pre-commit.
+
+    Parameters
+    ----------
+    session : Session
+        The Session object.
+    """
     args = session.posargs or [
         "run",
         "--all-files",
@@ -135,20 +173,32 @@ def precommit(session: Session) -> None:
     )
     session.run("pre-commit", *args)
     if args and args[0] == "install":
-        activate_virtualenv_in_precommit_hooks(session)
+        activate_virtualenv_in_recommit_hooks(session)
 
 
 @session(python=python_versions[0])
-def safety(session: Session) -> None:
-    """Scan dependencies for insecure packages."""
+def safety(session: Session) -> None:  # pylint: disable=redefined-outer-name
+    """Scan dependencies for insecure packages.
+
+    Parameters
+    ----------
+    session : Session
+        The Session object.
+    """
     requirements = session.poetry.export_requirements()
     session.install("safety")
     session.run("safety", "check", "--full-report", f"--file={requirements}")
 
 
 @session(python=python_versions)
-def mypy(session: Session) -> None:
-    """Type-check using mypy."""
+def mypy(session: Session) -> None:  # pylint: disable=redefined-outer-name
+    """Type-check using mypy.
+
+    Parameters
+    ----------
+    session : Session
+        The Session object.
+    """
     args = session.posargs or ["src", "tests", "docs/conf.py"]
     session.install(".")
     session.install("mypy", "pytest")
@@ -158,8 +208,14 @@ def mypy(session: Session) -> None:
 
 
 @session(python=python_versions)
-def tests(session: Session) -> None:
-    """Run the test suite."""
+def tests(session: Session) -> None:  # pylint: disable=redefined-outer-name
+    """Run the test suite.
+
+    Parameters
+    ----------
+    session : Session
+        The Session object.
+    """
     session.install(".")
     session.install("coverage[toml]", "pytest", "pygments")
     try:
@@ -170,10 +226,15 @@ def tests(session: Session) -> None:
 
 
 @session(python=python_versions[0])
-def coverage(session: Session) -> None:
-    """Produce the coverage report."""
-    args = session.posargs or ["report"]
+def coverage(session: Session) -> None:  # pylint: disable=redefined-outer-name
+    """Produce the coverage report.
 
+    Parameters
+    ----------
+    session : Session
+        The Session object.
+    """
+    args = session.posargs or ["report"]
     session.install("coverage[toml]")
 
     if not session.posargs and any(Path().glob(".coverage.*")):
@@ -183,20 +244,26 @@ def coverage(session: Session) -> None:
 
 
 @session(python=python_versions[0])
-def typeguard(session: Session) -> None:
-    """Runtime type checking using Typeguard."""
+def typeguard(session: Session) -> None:  # pylint: disable=redefined-outer-name
+    """Runtime type checking using Typeguard.
+
+    Parameters
+    ----------
+    session : Session
+        The Session object.
+    """
     session.install(".")
     session.install("pytest", "typeguard", "pygments")
-    session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
+    session.run("pytest", f"--typeguard-packages={PACKAGE}", *session.posargs)
 
 
 @session(python=python_versions)
-def xdoctest(session: Session) -> None:
+def xdoctest(session: Session) -> None:  # pylint: disable=redefined-outer-name
     """Run examples with xdoctest."""
     if session.posargs:
-        args = [package, *session.posargs]
+        args = [PACKAGE, *session.posargs]
     else:
-        args = [f"--modname={package}", "--command=all"]
+        args = [f"--modname={PACKAGE}", "--command=all"]
         if "FORCE_COLOR" in os.environ:
             args.append("--colored=1")
 
@@ -206,7 +273,7 @@ def xdoctest(session: Session) -> None:
 
 
 @session(name="docs-build", python=python_versions[0])
-def docs_build(session: Session) -> None:
+def docs_build(session: Session) -> None:  # pylint: disable=redefined-outer-name
     """Build the documentation."""
     args = session.posargs or ["docs", "docs/_build"]
     if not session.posargs and "FORCE_COLOR" in os.environ:
@@ -223,14 +290,14 @@ def docs_build(session: Session) -> None:
 
 
 @session(python=python_versions[0])
-def docs(session: Session) -> None:
+def docs(session: Session) -> None:  # pylint: disable=redefined-outer-name
     """Build and serve the documentation with live reloading on file changes."""
     args = session.posargs or ["--open-browser", "docs", "docs/_build"]
     session.install(".")
-    session.install("sphinx", "sphinx-autobuild", "sphinx-click", "furo", "myst-parser")
+    session.install("sphinx", "sphinx-autobuild", "sphinx-click",
+                    "furo", "myst-parser")
 
     build_dir = Path("docs", "_build")
     if build_dir.exists():
         shutil.rmtree(build_dir)
-
     session.run("sphinx-autobuild", *args)

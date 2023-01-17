@@ -318,7 +318,7 @@ def write_targets_limits(file, datasets, features_limits, us_sufix):
     }
     for target in targets_write:
         values = datasets[select_dataset[target][0]][target]
-        if us_sufix is "06":
+        if us_sufix == "06":
             # NOTE: Hard-coded logic. Needs to be refactored and placed into
             #       a configuration file.
             if "COMP_MCOMP_PQ_L@08QU" in target:

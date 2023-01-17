@@ -786,7 +786,7 @@ class sqlModule(SqlCredentials):
     # no teste do PIsystem, var usina está errado, vai buscar usina 108 numa
     # tabela que so tem Usina 8
     def getFVarParam(
-        self, usina, tini, tfim, taglist, fimFormat = True, param = ""
+        self, usina, tini, tfim, taglist, fimFormat=True, param=""
     ):
         cnxn = self.cnxn
         cursor = self.cursor
@@ -1019,7 +1019,7 @@ class sqlModule(SqlCredentials):
     #   return [t.replace('@', '_').replace(',', '_').replace('-',
     #   '_').replace('__', '_ME').replace('+', 'MA')+'__3600' for t in tagList]
 
-    # data_quality - Verificar a qualidade dos dados com relação a `NaN` e `inf`
+    # data_quality — Verificar a qualidade dos dados com relação a `NaN` e `inf`
     def data_quality(self, df):
         return pd.DataFrame(
             [

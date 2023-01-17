@@ -1,3 +1,13 @@
+"""
+This module contains the configuration for the ``pelopt`` package.
+
+Configurations
+--------------
+- ``USINAS``: dictionary with information related to each pelletizing plant.
+- ``DEFAULT_TINI``: default start date to retrieve sensor data from.
+- ``DEFAULT_TFIM``: default end date to retrieve sensor data from.
+
+"""
 from datetime import datetime
 
 import pytz
