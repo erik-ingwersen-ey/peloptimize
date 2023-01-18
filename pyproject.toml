@@ -19,31 +19,46 @@ classifiers = [
 Changelog = "https://github.com/ingwersen-erik/peloptimize/releases"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<=3.10"
+python = ">=3.8,<3.9"
 black = { version = ">=21.10b0", optional = false }
+datetime = { version = "^5.0", optional = false }
 dateutils = { version = "^0.6.12", optional = false }
+docutils = { version = "0.16", optional = false }
 flake8 = { version = ">=4.0.1", optional = false }
 flake8-annotations = {version = "^2.7.0", python = ">= 3.6.2", optional = false }
 flake8-bandit = { version = ">=2.1.2", optional = false }
 flake8-bugbear = { version = ">=21.9.2", optional = false }
 flake8-docstrings = { version = ">=1.6.0", optional = false }
 flake8-rst-docstrings = { version = ">=0.2.5", optional = false }
+furo = { version = "2022.09.29", optional = false }
+ipython = { version = "^8.8.0", optional = false }
+joblib = { version = "^1.2.0", optional = false }
+matplotlib = { version = "^3.6.3", optional = false }
+myst-parser = { version = "0.17.0", optional = false }
 nox = { version = "^2022.11.21", optional = false }
-numpy = { version = "^1.24.1", optional = false }
+nox-poetry = { version = "^1.0.2", optional = false }
+numpy = { version = "^1.23.5", optional = false }
+numpydoc = { version = "^1.5.0", optional = false }
 pandas = { version = "^1.5.2", optional = false }
+pydata-sphinx-theme = { version = "^0.12.0", optional = false }
 pyodbc = { version = "^4.0.35", optional = false }
 pyspark = { version = "^3.3.1", optional = false }
 python-dotenv = { version = "^0.19.2", optional = false }
+pytz = { version = "^2022.7.1", optional = false }
 scikit-learn = { version = "^1.2.0", optional = false }
-sphinx-click = { version = "^4.4.0", optional = false }
-pydata-sphinx-theme = { version = "^0.12.0", optional = false }
-sphinx-inline-tabs = { version = "^2022.1.2b11", optional = false }
-numpydoc = { version = "^1.5.0", optional = false }
-myst-parser = { version = "0.17.0", optional = false }
+scipy = { version = "^1.10.0", optional = false }
+seaborn = { version = "^0.12.2", optional = false }
+shap = { version = "^0.41.0", optional = false }
 sphinx = { version = "4.4.0", optional = false }
-furo = { version = "2022.09.29", optional = false }
-docutils = "0.16"
-sphinx-pyreverse = "^0.0.17"
+sphinx-click = { version = "^4.4.0", optional = false }
+sphinx-inline-tabs = { version = "^2022.1.2b11", optional = false }
+sphinx-pyreverse = { version = "^0.0.17", optional = false }
+pyod = "^1.0.7"
+jupyterlab = "^3.5.2"
+combo = "^0.1.3"
+wcmatch = "^8.4.1"
+pulp = "^2.7.0"
+numba = "^0.56.4"
 
 
 [tool.poetry.dev-dependencies]

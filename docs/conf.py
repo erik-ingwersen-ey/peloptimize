@@ -2,7 +2,6 @@
 import sys
 import os
 from pathlib import Path
-# from dotenv import load_dotenv, find_dotenv
 import importlib
 
 try:
@@ -65,9 +64,9 @@ extensions = [
     'sphinx.ext.githubpages',
     img_ext,
 ]
+
 autodoc_typehints = "both"
 autodoc_typehints_format = "short"
-
 
 autodocgen_config = {
     'modules': ['pelopt'],
@@ -87,7 +86,6 @@ autodocgen_config = {
 }
 
 # -- Options for HTML output ----------------------------------------------
-
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of built-in themes.
 html_theme = "furo"
@@ -122,8 +120,7 @@ source_suffix = {
     '.rst': 'restructuredtext', '.txt': 'restructuredtext', '.md': 'markdown'
 }
 
-
-# Example configuration for intersphinx: refer to the Python standard library.
+# Example configuration for inter-sphinx: refer to the Python standard library.
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'numpy': ('https://numpy.org/devdocs/', None),

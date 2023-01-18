@@ -39,7 +39,7 @@ warnings.filterwarnings('ignore')
 # MAGIC %md
 # MAGIC # run project libraries
 # MAGIC Mapeamento de pastas, arquivos e funções:
-# MAGIC 
+# MAGIC
 # MAGIC **modules**
 # MAGIC * predictive_module
 # MAGIC * model_module
@@ -49,13 +49,13 @@ warnings.filterwarnings('ignore')
 # MAGIC   * tagPIMStoDataLake
 # MAGIC   * getFVarParam
 # MAGIC   * getTAGsDelay
-# MAGIC 
+# MAGIC
 # MAGIC **files**
 # MAGIC * process_tag_map
 # MAGIC * datasets_limits
 # MAGIC * datasets_confs
 # MAGIC * tags
-# MAGIC 
+# MAGIC
 # MAGIC **analises**
 # MAGIC * analise_database
 
@@ -103,7 +103,7 @@ import .Otimizacao.modules.predictive_module
 # MAGIC # set functions
 
 
-def transfer_file(from_path, to_path, filename):     
+def transfer_file(from_path, to_path, filename):
     try:
         dbutils.fs.cp(os.path.join(from_path, filename), os.path.join(to_path, filename))
     except Exception as e:
@@ -116,16 +116,16 @@ def apply_naive_model(X, y):
     X_test = X[X.index > test_set_date]
     X_train = X[X.index < test_set_date]
     y_test = y[y.index > test_set_date]
-    y_train = y[y.index < test_set_date]    
-    
+    y_train = y[y.index < test_set_date]
+
     predicted = [y_train.mean()]*len(y_test)
-    
+
     print(len(y_test), len(predicted))
     mse = mean_squared_error(y_test, predicted)
     mape = np.mean(np.abs(y_test - predicted) / np.abs(y_test)) * 100
     r2 = r2_score(y_test, predicted)
     mse, mape, r2 = round(mse, 3), round(mape, 3), round(r2, 3)
-    
+
     return mse, mape, r2
 
 
@@ -162,23 +162,23 @@ for model, df in datasets.items():
 
 model = 'abrasao'
 df = datasets[model]
-datasets[model] = df[(df[df.columns[-1]] >= 4.5) 
+datasets[model] = df[(df[df.columns[-1]] >= 4.5)
                                           & (df[df.columns[-1]] < 6)]
 
 model = 'compressao'
 df = datasets[model]
-datasets[model] = df[(df[df.columns[-1]] >= 230) 
+datasets[model] = df[(df[df.columns[-1]] >= 230)
                                           & (df[df.columns[-1]] < 330)]
 
 # #usa datas especificas, ous seja, nao filtra no teste
 # model = 'abrasao'
 # df = datasets[model]
-# datasets[model] = df[((df[df.columns[-1]] >= 4.5) 
+# datasets[model] = df[((df[df.columns[-1]] >= 4.5)
 #                                           & (df[df.columns[-1]] < 6)) | (df.index < '2022-07-01')]
 
 # model = 'compressao'
 # df = datasets[model]
-# datasets[model] = df[((df[df.columns[-1]] >= 230) 
+# datasets[model] = df[((df[df.columns[-1]] >= 230)
 #                                           & (df[df.columns[-1]] < 330)) | (df.index < '2022-07-01')]
 
 
@@ -249,7 +249,7 @@ def get_prediction(set_type, apply_baseline = False):
 
       # ----------------------------------------------------------------------------
 
-      for c in ['GANHO PRENSA - US8']: 
+      for c in ['GANHO PRENSA - US8']:
           if c in df_train.columns[:-1]:
               df_train[c] = np.log(df_train[c])
 
@@ -307,7 +307,7 @@ def get_prediction(set_type, apply_baseline = False):
       print('pós remoção status zerado',df_train.shape)
 
 
-      #Aplicando um filtro de elementos 
+      #Aplicando um filtro de elementos
       if 'ProducaoPQ_Moagem' in df_train:
           p1 = df_train['ProducaoPQ_Moagem']>=700
           p2 = df_train['ProducaoPQ_Moagem']<=1000
@@ -325,21 +325,21 @@ def get_prediction(set_type, apply_baseline = False):
       df_train = df_train.fillna(method='bfill').fillna(method='ffill').fillna(method='bfill').fillna(0)
 
       # Gerando o treino e target
-      df_train = df_train.dropna(subset=[col_target])           
+      df_train = df_train.dropna(subset=[col_target])
       y_train = df_train[col_target]
       df_train = df_train.drop(col_target, axis=1)
     #       df_train = df_train[col_selection]
 
       # Dados para os limites de cada atributo
       for c in df_train.columns:
-          limits[c] = df_train[c] 
+          limits[c] = df_train[c]
 
       # Avaliando elementos e erificando se elas estão em determinado threshold
     #     if qualidade in ['particulados2','particulados3']:
     #         for i,v in enumerate(['2016-11-01 12:00:00','2017-08-15 12:00:00','2017-03-20 12:00:00','2016-04-01 12:00:00']):
     #             var_thres = 'thres_'+str(i)+'_'+qualidade
     #             df_train[var_thres] = 0
-    #             df_train.loc[df_train.index > v, var_thres] = 1           
+    #             df_train.loc[df_train.index > v, var_thres] = 1
 
       # Gerando o threshold do cross fold validation
 
@@ -357,7 +357,7 @@ def get_prediction(set_type, apply_baseline = False):
               results[qualidade] = apply_model(model_conf, qualidade, method, df_train, y_train,
                                       solver_path,
                                       validation=manual_kfold_validation,
-                                      plot_charts=plot_charts,                 
+                                      plot_charts=plot_charts,
                                       selfTrain=False,
                                       param_validation= {
                                           'cv_thresholds' : cv_thresholds,
@@ -392,7 +392,7 @@ for model, df in datasets.items():
 
 # for c in df_train.columns:
 #     print(qualidade, c)
-#     limits[c] = df_train[c] 
+#     limits[c] = df_train[c]
 
 
 # MAGIC %md
@@ -481,7 +481,7 @@ transfer_file(from_path, to_path, filename)
 
 
 # MAGIC %md
-# MAGIC ## save model csvs for checkup 
+# MAGIC ## save model csvs for checkup
 # MAGIC * clientes costumam demandar tais dados ocasionalmente
 
 
@@ -516,5 +516,3 @@ predict
 
 # MAGIC %md
 # MAGIC # testes
-
-

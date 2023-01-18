@@ -342,22 +342,21 @@ def get_calculated_tags(
         p = df_sql[f"PROD_PQ_Y@{plant_number_long}US"] > 0
         df_sql[f"PERMEABILIDADE CV6 - CALC - US{plant_number}"] = (
             df_sql[f"PRES1_I@{plant_number_long}QU-WB-851I-06"][p]
-            / df_sql["PROD_PQ_Y@{plant_number_long}US"][p]
+            / df_sql[f"PROD_PQ_Y@{plant_number_long}US"][p]
         )
 
-    if "SOMA FUNC FILTROS" in tags_needed:
-        df_sql["SOMA FUNC FILTROS"] = (
-            df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-01"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-02"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-03"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-04"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-05R"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-06"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-07"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-08"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-09"]
-            + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-10R"]
-        )
+    df_sql["SOMA FUNC FILTROS"] = (
+        df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-01"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-02"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-03"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-04"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-05R"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-06"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-07"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-08"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-09"]
+        + df_sql[f"FUNC1_D@{plant_number_long}FI-FL-827I-10R"]
+    )
 
     if "Produtividade Pelotamento Virtual" in tags_needed:
         p = df_sql["SOMA FUNC FILTROS"] > 0
@@ -426,7 +425,7 @@ def get_calculated_tags(
         p = df_sql[f"PROD_PQ_Y@{plant_number_long}US"] > 0
         df_sql[f"CONS ESPEC EE VENT - US{plant_number}"] = (
             df_sql[f"POT TOTAL VENT - US{plant_number}"][p]
-            / df_sql[f"PfROD_PQ_Y@{plant_number_long}US"][p]
+            / df_sql[f"PROD_PQ_Y@{plant_number_long}US"][p]
         )
 
     if f"PERMEABILIDADE CV1 - CALC - US{plant_number}" in tags_needed:
@@ -478,286 +477,7 @@ def get_calculated_tags(
             / 768
             / df_sql[f"FUNC1_D@{plant_number_long}QU-FR-851I-01M1"][p]
         )
-
-    if "media vel de disco de pel" in tags_needed:
-        df_sql["media vel de disco de pel"] = (
-            (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-01M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-01M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-02M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-02M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-03M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-03M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-04M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-04M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-05M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-05M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-06M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-06M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-07M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-07M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-08M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-08M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-09M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-09M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-10M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-10M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-11M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-11M1"]
-            )
-            + (
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-12M1"]
-                * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-12M1"]
-            )
-        ) / (
-            df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-01M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-02M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-03M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-04M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-05M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-06M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-07M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-08M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-09M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-10M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-11M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-12M1"]
-        )
-
-    if "media gap prensa" in tags_needed:
-        df_sql["media gap prensa"] = np.mean(
-            [
-                df_sql[f"POSI1_I@{plant_number_long}PR-RP-822I-01"],
-                df_sql[f"POSI2_I@{plant_number_long}PR-RP-822I-01"],
-            ],
-            axis=0,
-        )
-
-    if "media rolo fixo prensa" in tags_needed:
-        df_sql["media rolo fixo prensa"] = np.mean(
-            [
-                df_sql[f"POTE1_I@{plant_number_long}PR-RP-822I-01M1"],
-                df_sql[f"POTE1_I@{plant_number_long}PR-RP-822I-01M2"],
-            ],
-            axis=0,
-        )
-
-    if "media oleo prensa" in tags_needed:
-        df_sql["media oleo prensa"] = np.mean(
-            [
-                df_sql[f"PRES2_I@{plant_number_long}PR-RP-822I-01"],
-                df_sql[f"PRES3_I@{plant_number_long}PR-RP-822I-01"],
-            ],
-            axis=0,
-        )
-    if "media balanca moinho" in tags_needed:
-        df_sql["media balanca moinho"] = np.mean(
-            [
-                df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-01M1"],
-                df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-02M1"],
-                df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-03M1"],
-            ],
-            axis=0,
-        )
-
-    if "media_vazao_antracito" in tags_needed:
-        df_sql["media_vazao_antracito"] = np.mean(
-            [
-                df_sql[f"PESO1_I@{plant_number_long}MO-BW-813I-03M1"],
-                df_sql[f"PESO1_I@{plant_number_long}MO-BW-813I-04M1"],
-            ],
-            axis=0,
-        )
-
-    if "soma balanca minerio misturador" in tags_needed:
-        df_sql["soma balanca minerio misturador"] = (
-            df_sql[f"PESO1_I@{plant_number_long}MI-BW-832I-01M1"]
-            + df_sql[f"PESO1_I@{plant_number_long}MI-BW-832I-02M1"]
-        )
-
-    if "soma balanca bentonita misturador" in tags_needed:
-        df_sql["soma balanca bentonita misturador"] = (
-            df_sql[f"PESO1_I@{plant_number_long}MI-LW-832I-01M1"]
-            + df_sql[f"PESO1_I@{plant_number_long}MI-LW-832I-02M1"]
-        )
-
-    if "soma balanca retorno correia" in tags_needed:
-        df_sql["soma balanca retorno correia"] = (
-            df_sql[f"PESO1_I@{plant_number_long}PE-TR-840I-28M1"]
-            + df_sql[f"PESO1_I@{plant_number_long}PE-TR-840I-29M1"]
-        )
-
-    if "media temp pelotas" in tags_needed:
-        df_sql["media temp pelotas"] = np.mean(
-            [
-                df_sql[f"TEMP1_I@{plant_number_long}PN-TR-860I-01"],
-                df_sql[f"TEMP1_I@{plant_number_long}PN-TR-860I-02"],
-            ],
-            axis=0,
-        )
-
-    if "media disco de pelotamento" in tags_needed:
-        df_sql["media disco de pelotamento"] = np.mean(
-            [
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-01M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-02M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-03M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-04M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-05M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-06M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-07M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-08M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-09M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-10M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-11M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-12M1"],
-            ],
-            axis=0,
-        )
-
-    if "calc_distribuicao_gran" in tags_needed:
-        df_sql["calc_distribuicao_gran"] = (
-            df_sql[f"GRAN_12,5_PQ_L@{plant_number_long}QU"]
-            + df_sql[f"GRAN_16_PQ_L@{plant_number_long}QU"]
-            + df_sql[f"GRAN_10_PQ_L@{plant_number_long}QU"]
-            + df_sql[f"GRAN_8_PQ_L@{plant_number_long}QU"]
-        )
-
-    if "bomba de retorno tanque" in tags_needed:
-        df_sql["bomba de retorno tanque"] = df_sql[
-            f"VAZA1_I@{plant_number_long}MO-BP-821I-01"
-        ] / (
-            df_sql[f"VAZA1_I@{plant_number_long}MO-BP-821I-01"]
-            + df_sql[f"VAZA1_I@{plant_number_long}MO-BP-821I-01M1"]
-        )
-
-    if "media de densidade" in tags_needed:
-        df_sql["media de densidade"] = (
-            (
-                df_sql[f"DENS1_C@{plant_number_long}HO-BP-826I-05"]
-                * df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-05M1"]
-            )
-            + (
-                df_sql[f"DENS1_C@{plant_number_long}HO-BP-826I-06R"]
-                * df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-06RM1"]
-            )
-            + (
-                df_sql[f"DENS1_C@{plant_number_long}HO-BP-826I-07"]
-                * df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-07M1"]
-            )
-            + (
-                df_sql[f"DENS1_C@{plant_number_long}HO-BP-826I-08R"]
-                * df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-08RM1"]
-            )
-        ) / (
-            df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-05M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-06RM1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-07M1"]
-            + df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-08RM1"]
-        )
-
-    if "mediana de rotacao" in tags_needed:
-        df_sql["mediana de rotacao"] = np.median(
-            [
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-01M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-02M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-03M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-04M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-05RM1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-06M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-07M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-08M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-09M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-10RM1"],
-            ],
-            axis=0,
-        )
-    if "media disco de pelotamento" in tags_needed:
-        df_sql["media disco de pelotamento"] = np.mean(
-            [
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-01M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-02M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-03M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-04M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-05M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-06M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-07M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-08M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-09M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-10M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-11M1"],
-                df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-12M1"],
-            ],
-            axis=0,
-        )
-    if "media alimentacao do disco" in tags_needed:
-        df_sql["media alimentacao do disco"] = np.mean(
-            [
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-01M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-02M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-03M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-04M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-05M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-06M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-07M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-08M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-09M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-10M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-11M1"],
-                df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-12M1"],
-            ],
-            axis=0,
-        )
-
-    if "media tm" in tags_needed:
-        df_sql["media tm"] = np.mean(
-            [
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-01"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-02"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-03"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-04"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-05"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-06"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-07"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-08"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-09"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-10"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-11"],
-                df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-12"],
-            ],
-            axis=0,
-        )
-
-    if "media_potencia_moinho" in tags_needed:
-        df_sql["media_potencia_moinho"] = np.mean(
-            [
-                df_sql[f"POTE1_I@{plant_number_long}MO-MO-821I-01M1"],
-                df_sql[f"POTE1_I@{plant_number_long}MO-MO-821I-02M1"],
-                df_sql[f"POTE1_I@{plant_number_long}MO-MO-821I-03M1"],
-            ],
-            axis=0,
-        )
-
+    
     if f"NIVE1_I@{plant_number_long}HO-TQ-826I-03" in tags_needed:
         p = df_sql[f"FUNC1_D@{plant_number_long}HO-AG-826I-01M1"] > 0
         df_sql[f"NIVE1_I@{plant_number_long}HO-TQ-826I-03"] = df_sql[
@@ -776,35 +496,275 @@ def get_calculated_tags(
             f"NIVE1_I@{plant_number_long}HO-TQ-826I-05"
         ][p]
 
-    if "corpo_moedor_especifico" in tags_needed:
-        df_sql["corpo_moedor_especifico"] = (
-            (
-                df_sql[f"PESO1_Q@{plant_number_long}MO-TR-821I-02M1-MO01"]
-                + df_sql[f"PESO1_Q@{plant_number_long}MO-TR-821I-02M1-MO02"]
-                + df_sql[f"PESO1_Q@{plant_number_long}MO-TR-821I-02M1-MO03"]
-            )
-            * df_sql[f"FUNC1_D@{plant_number_long}QU-FR-851I-01M1"]
-            * 1000
-            / df_sql[f"PROD_PQ_Y@{plant_number_long}QU-ACUM"]
+    df_sql["media vel de disco de pel"] = (
+        (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-01M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-01M1"]
         )
-
-    if "ProducaoPQ_Moagem" in tags_needed:
-        df_sql["taxa_alimentacao_moinhos"] = (
-            df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-01M1"]
-            + df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-02M1"]
-            + df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-03M1"]
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-02M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-02M1"]
         )
-        df_sql["ProducaoPQ_Moagem"] = 0.8762 * df_sql["taxa_alimentacao_moinhos"]
-
-    if "antracito" in tags_needed:
-        df_sql["antracito"] = df_sql[f"QUIM_CARVAO_PP_L@{plant_number_long}PR"] * 10
-
-    if "calcario" in tags_needed:
-        df_sql["denominator"] = 0.8762 * (
-            df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-01M1"]
-            + df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-02M1"]
-            + df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-03M1"]
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-03M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-03M1"]
         )
-        df_sql["calcario"] = df_sql[f"PESO1_I@{plant_number_long}MO-BW-813I-01M1"] / df_sql["denominator"]
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-04M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-04M1"]
+        )
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-05M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-05M1"]
+        )
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-06M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-06M1"]
+        )
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-07M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-07M1"]
+        )
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-08M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-08M1"]
+        )
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-09M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-09M1"]
+        )
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-10M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-10M1"]
+        )
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-11M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-11M1"]
+        )
+        + (
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-12M1"]
+            * df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-12M1"]
+        )
+    ) / (
+        df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-01M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-02M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-03M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-04M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-05M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-06M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-07M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-08M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-09M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-10M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-11M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}PE-BD-840I-12M1"]
+    )
+    df_sql["media gap prensa"] = np.mean(
+        [
+            df_sql[f"POSI1_I@{plant_number_long}PR-RP-822I-01"],
+            df_sql[f"POSI2_I@{plant_number_long}PR-RP-822I-01"],
+        ],
+        axis=0,
+    )
+    df_sql["media rolo fixo prensa"] = np.mean(
+        [
+            df_sql[f"POTE1_I@{plant_number_long}PR-RP-822I-01M1"],
+            df_sql[f"POTE1_I@{plant_number_long}PR-RP-822I-01M2"],
+        ],
+        axis=0,
+    )
+    df_sql["media oleo prensa"] = np.mean(
+        [
+            df_sql[f"PRES2_I@{plant_number_long}PR-RP-822I-01"],
+            df_sql[f"PRES3_I@{plant_number_long}PR-RP-822I-01"],
+        ],
+        axis=0,
+    )
+    df_sql["media balanca moinho"] = np.mean(
+        [
+            df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-01M1"],
+            df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-02M1"],
+            df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-03M1"],
+        ],
+        axis=0,
+    )
+    df_sql["media_vazao_antracito"] = np.mean(
+        [
+            df_sql[f"PESO1_I@{plant_number_long}MO-BW-813I-03M1"],
+            df_sql[f"PESO1_I@{plant_number_long}MO-BW-813I-04M1"],
+        ],
+        axis=0,
+    )
+    df_sql["soma balanca minerio misturador"] = (
+        df_sql[f"PESO1_I@{plant_number_long}MI-BW-832I-01M1"]
+        + df_sql[f"PESO1_I@{plant_number_long}MI-BW-832I-02M1"]
+    )
+    df_sql["soma balanca bentonita misturador"] = (
+        df_sql[f"PESO1_I@{plant_number_long}MI-LW-832I-01M1"]
+        + df_sql[f"PESO1_I@{plant_number_long}MI-LW-832I-02M1"]
+    )
+    df_sql["soma balanca retorno correia"] = (
+        df_sql[f"PESO1_I@{plant_number_long}PE-TR-840I-28M1"]
+        + df_sql[f"PESO1_I@{plant_number_long}PE-TR-840I-29M1"]
+    )
+    df_sql["media temp pelotas"] = np.mean(
+        [
+            df_sql[f"TEMP1_I@{plant_number_long}PN-TR-860I-01"],
+            df_sql[f"TEMP1_I@{plant_number_long}PN-TR-860I-02"],
+        ],
+        axis=0,
+    )
+
+    df_sql["media disco de pelotamento"] = np.mean(
+        [
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-01M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-02M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-03M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-04M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-05M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-06M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-07M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-08M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-09M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-10M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-11M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-12M1"],
+        ],
+        axis=0,
+    )
+    df_sql["calc_distribuicao_gran"] = (
+        df_sql[f"GRAN_12,5_PQ_L@{plant_number_long}QU"]
+        + df_sql[f"GRAN_16_PQ_L@{plant_number_long}QU"]
+        + df_sql[f"GRAN_10_PQ_L@{plant_number_long}QU"]
+        + df_sql[f"GRAN_8_PQ_L@{plant_number_long}QU"]
+    )
+
+    df_sql["bomba de retorno tanque"] = df_sql[
+        f"VAZA1_I@{plant_number_long}MO-BP-821I-01"
+    ] / (
+        df_sql[f"VAZA1_I@{plant_number_long}MO-BP-821I-01"]
+        + df_sql[f"VAZA1_I@{plant_number_long}MO-BP-821I-01M1"]
+    )
+    df_sql["media de densidade"] = (
+        (
+            df_sql[f"DENS1_C@{plant_number_long}HO-BP-826I-05"]
+            * df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-05M1"]
+        )
+        + (
+            df_sql[f"DENS1_C@{plant_number_long}HO-BP-826I-06R"]
+            * df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-06RM1"]
+        )
+        + (
+            df_sql[f"DENS1_C@{plant_number_long}HO-BP-826I-07"]
+            * df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-07M1"]
+        )
+        + (
+            df_sql[f"DENS1_C@{plant_number_long}HO-BP-826I-08R"]
+            * df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-08RM1"]
+        )
+    ) / (
+        df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-05M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-06RM1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-07M1"]
+        + df_sql[f"FUNC1_D@{plant_number_long}HO-BP-826I-08RM1"]
+    )
+    df_sql["mediana de rotacao"] = np.median(
+        [
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-01M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-02M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-03M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-04M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-05RM1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-06M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-07M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-08M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-09M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}FI-FL-827I-10RM1"],
+        ],
+        axis=0,
+    )
+    df_sql["media disco de pelotamento"] = np.mean(
+        [
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-01M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-02M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-03M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-04M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-05M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-06M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-07M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-08M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-09M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-10M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-11M1"],
+            df_sql[f"ROTA1_I@{plant_number_long}PE-BD-840I-12M1"],
+        ],
+        axis=0,
+    )
+    df_sql["media alimentacao do disco"] = np.mean(
+        [
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-01M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-02M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-03M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-04M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-05M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-06M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-07M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-08M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-09M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-10M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-11M1"],
+            df_sql[f"PESO1_I@{plant_number_long}PE-BW-840I-12M1"],
+        ],
+        axis=0,
+    )
+    df_sql["media tm"] = np.mean(
+        [
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-01"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-02"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-03"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-04"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-05"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-06"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-07"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-08"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-09"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-10"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-11"],
+            df_sql[f"GRAN_OCS_TM@{plant_number_long}PE-BD-840I-12"],
+        ],
+        axis=0,
+    )
+
+    df_sql["corpo_moedor_especifico"] = (
+        (
+            df_sql[f"PESO1_Q@{plant_number_long}MO-TR-821I-02M1-MO01"]
+            + df_sql[f"PESO1_Q@{plant_number_long}MO-TR-821I-02M1-MO02"]
+            + df_sql[f"PESO1_Q@{plant_number_long}MO-TR-821I-02M1-MO03"]
+        )
+        * df_sql[f"FUNC1_D@{plant_number_long}QU-FR-851I-01M1"]
+        * 1000
+        / df_sql[f"PROD_PQ_Y@{plant_number_long}QU-ACUM"]
+    )
+    df_sql["taxa_alimentacao_moinhos"] = (
+        df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-01M1"]
+        + df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-02M1"]
+        + df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-03M1"]
+    )
+    df_sql["ProducaoPQ_Moagem"] = 0.8762 * df_sql["taxa_alimentacao_moinhos"]
+    df_sql["antracito"] = df_sql[f"QUIM_CARVAO_PP_L@{plant_number_long}PR"] * 10
+    df_sql["denominator"] = 0.8762 * (
+        df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-01M1"]
+        + df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-02M1"]
+        + df_sql[f"PESO1_I@{plant_number_long}MO-BW-821I-03M1"]
+    )
+    df_sql["calcario"] = df_sql[f"PESO1_I@{plant_number_long}MO-BW-813I-01M1"] / df_sql["denominator"]
+    df_sql["media_potencia_moinho"] = np.mean(
+        [
+            df_sql[f"POTE1_I@{plant_number_long}MO-MO-821I-01M1"],
+            df_sql[f"POTE1_I@{plant_number_long}MO-MO-821I-02M1"],
+            df_sql[f"POTE1_I@{plant_number_long}MO-MO-821I-03M1"],
+        ],
+        axis=0,
+    )
 
     return df_sql

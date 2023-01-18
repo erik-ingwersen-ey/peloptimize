@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 import itertools
 import random
 import warnings
 from pathlib import Path
-from typing import Callable
+from typing import Callable, List
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -22,31 +24,67 @@ from wcmatch import glob
 from pelopt.utils.logging_config import logger
 
 
-warnings.filterwarnings("ignore")
+def data_quality(df: pd.DataFrame) -> pd.DataFrame:
+    """Verify data quality.
 
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Dataframe to verify.
 
-def data_quality(df):
-    # Verificar a qualidade dos dados com relação a NaN e inf
+    Returns
+    -------
+    pd.DataFrame
+        Dataframe with data quality information. The columns are:
+
+        - ``Atributo``: column name.
+        - ``NaN``: number of ``NaN`` values.
+        - ``+inf``: number of ``+inf`` values.
+        - ``-inf``: number of ``-inf`` values.
+
+    """
     logger.info("Row count: %s - Column count: %s", *df.shape)
     return pd.DataFrame(
         [
             [
-                i,                         # Nome da coluna
-                df[i].isna().sum(),        # Quantidade de NaN
-                (df[i] == np.inf).sum(),   # Quantidade de +inf
-                (df[i] == -np.inf).sum(),  # Quantidade de -inf
+                col,                        # Nome da coluna
+                df[i].isna().sum(),         # Quantidade de NaN
+                (df[i] == np.inf).sum(),    # Quantidade de +inf
+                (df[i] == -np.inf).sum(),   # Quantidade de -inf
             ]
-            for i in df.columns
+            for col in df.columns
         ],
         columns=["Atributo", "NaN", "+inf", "-inf"],
     ).sort_values(by=["NaN", "+inf", "-inf"], ascending=False)
 
 
-def params_to_str(params: dict) -> str:
+def params_to_str(params: dict, exclude: List[str] | str | None = None) -> str:
+    """Convert a dictionary to string.
+
+    Function
+
+    Parameters
+    ----------
+    params : dict
+        Dictionary to convert.
+    exclude: List[str] | str | None, optional
+        Keys to exclude from the string conversion.
+        When ``None`` (default), excludes keys: ``"random_state"``, ``"seed"``.
+
+    Returns
+    -------
+    str
+        Dictionary converted to string. Keys are separated by ``;``.
+    """
+    if exclude is None:
+        exclude = {"random_state", "seed"}
+    elif isinstance(exclude, str):
+        exclude = {exclude}
+
     return ";".join(
-        "{}={}".format(format_key(key), format_value(value))
+        f"{format_key(key)}={format_value(value)}"
         for key, value in params.items()
-        if key not in {"random_state", "seed"}
+        if key not in exclude
     )
 
 
@@ -57,20 +95,18 @@ def format_key(key):
 
 
 def format_value(value):
-    if value is True:
+    if value:
         return "Y"
-    if value is False:
+    if not value:
         return "N"
-    if value is None:
-        return "-"
-    return value
+    return "-" if value is None else value
 
 
 def hide_toggle(for_next=False):
     this_cell = """$('div.cell.code_cell.rendered.selected')"""
     next_cell = f"{this_cell}.next()"
     toggle_text = "Toggle show/hide"  # Text shown on toggle link
-    target_cell = this_cell           # Target cell to control with toggle
+    target_cell = this_cell  # Target cell to control with toggle
     # A bit of JS to permanently hide code
     # in current cell (only when toggling next cell)
     js_hide_current = ""
@@ -79,7 +115,7 @@ def hide_toggle(for_next=False):
         target_cell = next_cell
         toggle_text += " next cell"
         js_hide_current = f'{this_cell}.find("div.input").hide();'
-    js_f_name = "code_toggle_{}".format(str(random.randint(1, 2 ** 64)))
+    js_f_name = f"code_toggle_{random.randint(1, 2 ** 64)}"
     html = """
         <script>
             function {f_name}() {{
@@ -97,65 +133,32 @@ def hide_toggle(for_next=False):
     return HTML(html)
 
 
-# # * Função que carrega todos os datasets descritos para um dicionário
-# # ? Quaisquer outras alterações são necessárias passar uma função de callback
-# def load_df(
-#     csv_names: dict, callback=None, fread=pd.read_csv, enable_extension=False
-# ):
-#     datasets = {}
-#     for key, value in csv_names.items():  # iteração sobre todos os dfs
-#         logger.info('Loading %s from %s', key, value)
-#         # Chamada recursiva para diretórios
-#         if os.path.isdir(value):
-#             if enable_extension:
-#                 filename = {
-#                     dirf: os.path.join(value, dirf)
-#                     for dirf in os.listdir(value)
-#                 }
-#             else:
-#                 filename = {
-#                     ".".join(dirf.split(".")[:-1]): os.path.join(value, dirf)
-#                     for dirf in os.listdir(value)
-#                 }
-#             res_dict = load_df(filename, callback, fread, enable_extension)
-#             logger.info(f"Fim do, %s, (dir)", value)
-#             datasets.update(res_dict)
-#
-#         else:
-#             # TODO: Checagem que quais os tipos de arquivos permitidos
-#             datasets[key] = fread(value)
-#             # Chamando o callback
-#             if isinstance(callback, Callable):
-#                 datasets[key] = callback(datasets[key])
-#     return datasets
-#
-
 def load_df(csv_names: dict, callback=None, **reader_kwargs):
     datasets = {}
     for key, value in csv_names.items():  # iteração sobre todos os dfs
         value = Path(value)
         if value.is_dir():
             filename = {
-                Path(fname).with_suffix('').name: value.joinpath(fname)
+                Path(fname).with_suffix("").name: value.joinpath(fname)
                 for fname in glob.glob(
-                    '*.{csv,txt,xlsx,json}', flags=glob.BRACE, root_dir=value
+                    "*.{csv,txt,xlsx,json}", flags=glob.BRACE, root_dir=value
                 )
             }
             res_dict = load_df(filename, callback)
-            logger.info(f"Fim do, %s, (dir)", value)
+            logger.info("Fim do, %s, (dir)", value)
             datasets.update(res_dict)
         else:
-            if value.suffix in ['.csv', '.txt']:
+            if value.suffix in [".csv", ".txt"]:
                 dataset = pd.read_csv(value, **reader_kwargs)
                 if dataset.shape[1] <= 1:
-                    reader_kwargs.pop('sep', None)
+                    reader_kwargs.pop("sep", None)
                     _dataset = pd.read_csv(value, sep=None, **reader_kwargs)
                     if _dataset.shape[1] > 1:
                         dataset = _dataset
                 datasets[key] = dataset
-            elif value.suffix == '.xlsx':
+            elif value.suffix == ".xlsx":
                 datasets[key] = pd.read_excel(value, **reader_kwargs)
-            elif value.suffix == '.json':
+            elif value.suffix == ".json":
                 datasets[key] = pd.read_json(value, **reader_kwargs)
             if isinstance(callback, Callable):
                 datasets[key] = callback(datasets[key])
@@ -166,11 +169,9 @@ def show_coef(results):
     # Coeficientes
     best = sorted(results, key=lambda r: -r["metrics"]["r2_train"])[0]
     logger.info(best["conf"], best["params"], best["metrics"])
-    for i, (a, b) in enumerate(
-        sorted(
-            list(zip(best["columns"].tolist(), best["model"].coef_)),
-            key=lambda e: -abs(e[1]),
-        )
+    for a, b in sorted(
+        list(zip(best["columns"].tolist(), best["model"].coef_)),
+        key=lambda e: -abs(e[1]),
     ):
         logger.info("%-10.4s  %s", str(b), str(a))
 
@@ -181,13 +182,12 @@ def xgb_imprime_coef(self):
 
 def ridge_imprime_coef(results=None):
     best = sorted(results, key=lambda r: -r["metrics"]["r2_train"])[0]
-    return {
-        a: b
-        for a, b in sorted(
+    return dict(
+        sorted(
             list(zip(best["columns"].tolist(), best["model"].coef_)),
             key=lambda e: -abs(e[1]),
         )
-    }
+    )
 
 
 def param_combination(model, **kwargs):
@@ -197,12 +197,10 @@ def param_combination(model, **kwargs):
     }
     model_params["random_state"] = [0]
     keys = sorted(model_params.keys())
-    comb_params = [
+    return [
         dict(zip(keys, prod))
         for prod in itertools.product(*(model_params[k] for k in keys))
     ]
-
-    return comb_params
 
 
 def kfold_validation(model, df_train, df_target, **kwargs):
@@ -255,11 +253,9 @@ def plot_charts(
 ):
     mse, mape, r2, r, r2_train, r2_train_adj = metrics
 
-    graph_title = (
-        qualidade + "_" + model_conf + params_to_str(params)
-    )  # + str(model.alpha)
+    graph_title = qualidade + "_" + model_conf + params_to_str(params)
 
-    fpath = Path(f"/dbfs/tmp/{solver_path}/Graficos")
+    fpath = Path(kwargs.get("fpath", f"/dbfs/tmp/{solver_path}/Graficos"))
     fpath.mkdir(parents=True, exist_ok=True)
     _fpath = fpath.joinpath("Line")
     _fpath.mkdir(parents=True, exist_ok=True)
@@ -310,11 +306,15 @@ def apply_model(
     param_plot = kwargs.get("param_plotting", None)
 
     results = []
-    comb_params = parameter_combination(model, model_conf, kwparams=param_comb)
+    comb_params = parameter_combination(
+        model,
+        # model_conf,
+        kwparams=param_comb,
+    )
     for params in comb_params:
         method = model["model"](**params)
 
-        # Applying the kfold fit model
+        # Applying the k-fold fit model
         try:
             indexes, ys, yhats, metrics = validation(
                 method, df_train, df_target, kwparams=param_valid
@@ -345,6 +345,7 @@ def apply_model(
             metrics,
             solver_path,
             kwparams=param_plot,
+            fpath=f"./tmp/{solver_path}/Graficos",
         )
 
         # Appending the best results
@@ -458,7 +459,7 @@ def multi_model_outlier_classification(df, outliers_fraction=0.15, n_jobs=-1):
     }
     dfx = df.copy()
     dfx["outlier"] = 0
-    for i, (clf_name, clf) in enumerate(classifiers.items()):
+    for clf_name, clf in classifiers.items():
         logger.debug("Running: %s", clf_name)
         clf.fit(dfx)
         y_pred = clf.predict(dfx)

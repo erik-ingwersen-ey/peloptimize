@@ -8,3 +8,11 @@
 /docs/_build/
 /src/*.egg-info/
 __pycache__/
+/df_sql.csv
+/df_sql_original.csv
+/tmp/
+*.DS_Store
+*.pyc
+*.ipynb_checkpoints
+.DS_Store
+*.joblib

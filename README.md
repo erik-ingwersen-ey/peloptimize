@@ -4,16 +4,12 @@
 
 # Peloptimize
 
-[![PyPI](https://img.shields.io/pypi/v/peloptimize.svg)][pypi_]
-[![Status](https://img.shields.io/pypi/status/peloptimize.svg)][status]
-[![Python Version](https://img.shields.io/pypi/pyversions/peloptimize)][python version]
-[![License](https://img.shields.io/pypi/l/peloptimize)][license]
 
-[![Read the documentation at https://peloptimize.readthedocs.io/](https://img.shields.io/readthedocs/peloptimize/latest.svg?label=Read%20the%20Docs)][read the docs]
-[![Codecov](https://codecov.io/gh/ingwersen-erik/peloptimize/branch/main/graph/badge.svg)][codecov]
-
+[![License](https://img.shields.io/badge/license-PROPRIETARY-brightgreen)][license]
+[![Read the documentation at https://github.com/erik-ingwersen-ey/peloptimize#:~:text=do%20projeto%20em%3A-,documenta%C3%A7%C3%A3o,-Installation](https://img.shields.io/badge/Read%20the%20Docs-documentation-brightgreen)][read the docs]
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)][pre-commit]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)][black]
+[![codecov](https://codecov.io/github/erik-ingwersen-ey/peloptimize/branch/main/graph/badge.svg?token=cTySXE6G4c)](https://codecov.io/github/erik-ingwersen-ey/peloptimize)
 
 [pypi_]: https://pypi.org/project/peloptimize/
 
@@ -42,19 +38,25 @@ um modelo de otimização de custos.
 
 [//]: # (de um modelo de otimização baseado nos resultados dos algoritmos preditivos.)
 
+Acesse a documentação do projeto em: [documentação](https://erik-ingwersen-ey.github.io/peloptimize/)
+
 ----
+
+![](https://codecov.io/github/erik-ingwersen-ey/peloptimize/branch/main/graphs/sunburst.svg?token=cTySXE6G4c)
 
 ## Installation
 
-You can install _Peloptimize_ via [pip]:
+### Using `pip`
+
+You can install _Peloptimize_ via `pip`:
 
 ```console
 $ pip install peloptimize
 ```
 
 That command installs the package in your local Python environment.
-However, during development you might want to consider installing it in **
-development mode**.
+However, during development you might want to consider installing it in
+**development mode**.
 
 You can do so by adding the `-e` option the installation command:
 
@@ -65,8 +67,21 @@ $ pip install -e .
 > You can learn more about the differences between `pip install`
 > and `pip install -e`
 > commands
-> at: [pip documentation - development-mode](https://setuptools.pypa.io/en/latest/userguide/development_mode
-> . html#development-mode)
+> at: [pip documentation - development-mode](https://setuptools.pypa.io/en/latest/userguide/development_mode.html#development-mode)
+
+### Using `setup.py`
+
+There's also the option to install _Peloptimize_ by executing the command:
+
+```console
+$ python setup.py develop
+```
+
+**Or:**
+
+```console
+$ python setup.py install
+```
 
 ### Python Environment
 
@@ -105,14 +120,14 @@ and show new users how to use it.
 
 ## Contributing
 
-This repository has a [Contributor Guide], to help others contribute to
+This repository has a [Contributor Guide](CONTRIBUTING.md), to help others contribute to
 the project.
 
 ## License
 
 _Peloptimize_ is distributed under the terms of the
-[Proprietary license](license). **Non authorized use, or distribution is
-prohibited.**
+[Proprietary license](LICENSE).
+**Non authorized use, or distribution is prohibited.**
 
 ## Issues
 
