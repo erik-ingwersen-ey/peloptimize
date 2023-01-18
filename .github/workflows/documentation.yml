@@ -21,7 +21,7 @@ jobs:
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Build and Commit
-      uses: sphinx-notes/pages@v2
+      uses: sphinx-notes/pages@v3
       with:
         requirements_path: ./requirements.txt
     - name: Push changes
